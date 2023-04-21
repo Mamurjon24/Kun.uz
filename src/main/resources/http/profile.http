@@ -37,5 +37,32 @@ Content-Type:  application/json
   "visible": "true"
 }
 
+### Update profle
+PUT localhost:8080/api/v1/profile/updateByProfile
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODE5MTQzNTEsImlkIjoyLCJyb2xlIjoiUFVCTElTSEVSIiwiZXhwIjoxNjgyMDAwNzUxLCJpc3MiOiJLdW51eiB0ZXN0IHBvcnRhbGkifQ.VsQDqdNIuRoJbFSNlb6_zxGbpObL5oAvYFg-85-4bOaSyLYOF3MqEtEgzXKgQaV744-m1xArbRs7eMa_-a9tIg
+Content-Type:  application/json
+
+{
+  "name": "Eshmat",
+  "surname": "Eshmatov",
+  "email": "eshmat@mail.ru",
+  "phone": "4",
+  "password": "1",
+  "role": "ADMIN",
+  "status": "ACTIVE",
+  "visible": "FALSE"
+}
+
 ### profile List
 GET http://localhost:8080/api/v1/profile/getProfileList
+
+### List profle
+PUT localhost:8080/api/v1/profile/paging
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODE5MDk1MjcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODE5OTU5MjcsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.NajD-X4FaRzEwPEs00Y9MZ_HkMC6gkfy4YZkJ2Hw_3SEZn0R4OVFD6QKcYpbi9P4pBal1zxC8bDIemjEdFzMSg
+Content-Type:  application/json
+
+### List profle
+PUT localhost:8080/api/v1/profile/delete/2
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODE5MDk1MjcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODE5OTU5MjcsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.NajD-X4FaRzEwPEs00Y9MZ_HkMC6gkfy4YZkJ2Hw_3SEZn0R4OVFD6QKcYpbi9P4pBal1zxC8bDIemjEdFzMSg
+Content-Type:  application/json
+

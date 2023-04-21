@@ -1,0 +1,56 @@
+### Create Article
+POST localhost:8080/api/v1/article/
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODE5MDk1MjcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODE5OTU5MjcsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.NajD-X4FaRzEwPEs00Y9MZ_HkMC6gkfy4YZkJ2Hw_3SEZn0R4OVFD6QKcYpbi9P4pBal1zxC8bDIemjEdFzMSg
+Content-Type:  application/json
+
+//{
+//  "nameUz": "Maqola №1",
+//  "nameRu": "Статия №1",
+//  "nameEng": "Article №1",
+//  "visible": true
+//}
+//{
+//  "nameUz": "Maqola №2",
+//  "nameRu": "Статия №2",
+//  "nameEng": "Article №2",
+//  "visible": true
+//}
+//{
+//  "nameUz": "Maqola №3",
+//  "nameRu": "Статия №3",
+//  "nameEng": "Article №3",
+//  "visible": true
+//}
+{
+  "nameUz": "Maqola №4",
+  "nameRu": "Статия №4",
+  "nameEng": "Article №4",
+  "visible": true
+}
+### Update profil
+PUT localhost:8080/api/v1/article/update
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIwODY0MjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODIxNzI4MjgsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.1M95AXImNj91615YCGyvIBZtdHXV_9hgC5RBA-ScctkNrMHzeZzJPIWdaH9MZfDJ0hwUZwWN7eZcjLi1ZliDIQ
+Content-Type:  application/json
+
+{
+  "id" : 2,
+  "nameUz": "Maqola №2",
+  "nameRu": "Статя №2",
+  "nameEng": "Article №2",
+  "visible": true
+}
+
+### List profil
+PUT localhost:8080/api/v1/article/delete/2
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIwODY0MjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODIxNzI4MjgsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.1M95AXImNj91615YCGyvIBZtdHXV_9hgC5RBA-ScctkNrMHzeZzJPIWdaH9MZfDJ0hwUZwWN7eZcjLi1ZliDIQ
+Content-Type:  application/json
+
+### Paging profil
+PUT localhost:8080/api/v1/article/paging
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIwODY0MjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODIxNzI4MjgsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.1M95AXImNj91615YCGyvIBZtdHXV_9hgC5RBA-ScctkNrMHzeZzJPIWdaH9MZfDJ0hwUZwWN7eZcjLi1ZliDIQ
+Content-Type:  application/json
+
+### GetByLang profil
+PUT localhost:8080/api/v1/article/getByLang/Eng
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIwODY0MjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODIxNzI4MjgsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.1M95AXImNj91615YCGyvIBZtdHXV_9hgC5RBA-ScctkNrMHzeZzJPIWdaH9MZfDJ0hwUZwWN7eZcjLi1ZliDIQ
+Content-Type:  application/json

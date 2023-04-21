@@ -1,4 +1,4 @@
-package com.example.dto;
+package com.example.dto.register;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ArticleTypeDTO {
+public class RegionDTO {
     private Integer id;
     private Integer key;
     private String nameUz;

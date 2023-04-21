@@ -1,6 +1,6 @@
 package com.example.service;
 
-import com.example.dto.ProfileDTO;
+import com.example.dto.profile.ProfileDTO;
 import com.example.entity.ProfileEntity;
 import com.example.enums.GeneralStatus;
 import com.example.enums.ProfileRole;
@@ -9,6 +9,7 @@ import com.example.exp.MethodNotAllowedExeption;
 import com.example.repository.ProfileRepository;
 import com.example.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -42,17 +43,17 @@ public class ProfileService {
     }
 
     public void isValidProfile(ProfileDTO dto) {
-       if (dto.getRole().equals(ProfileRole.ADMIN)){
-           throw new MethodNotAllowedExeption("You cannot Create Admin:)");
-       }
-
+        Optional<ProfileEntity> optional = profileRepository.findByEmailAndPassword(dto.getEmail(), dto.getPassword());
+        if (!optional.isEmpty()) {
+            throw new MethodNotAllowedExeption("This email or password already use :)");
+        }
+        if (dto.getRole().equals(ProfileRole.ADMIN)) {
+            throw new MethodNotAllowedExeption("You cannot Create Admin:)");
+        }
     }
 
     public boolean update(Integer adminId, ProfileDTO dto) {
         ProfileEntity entity = get(dto.getId());
-        if (dto.getRole().equals(ProfileRole.ADMIN)){
-            throw new MethodNotAllowedExeption("You Cannot update Profiles By ADMINE status");
-        }
         entity.setName(dto.getName());
         entity.setSurname(dto.getSurname());
         entity.setPhone(dto.getPhone());
@@ -67,9 +68,55 @@ public class ProfileService {
         return true;
     }
 
+    public boolean updateOwnProfile(Integer id, ProfileDTO dto) {
+        ProfileEntity entity = get(id);
+        entity.setName(dto.getName());
+        entity.setSurname(dto.getSurname());
+        entity.setPhone(dto.getPhone());
+        entity.setEmail(dto.getEmail());
+        entity.setPassword(MD5Util.getMd5Hash(dto.getPassword()));
+        entity.setUpdatedDate(LocalDateTime.now());
+        entity.setPrtId(id);
+        profileRepository.save(entity);
+        return true;
+    }
+
     public List<ProfileDTO> getAll() {
         List<ProfileDTO> dtoList = getdtoList(profileRepository.findAll());
         return dtoList;
+    }
+
+    public Page<ProfileDTO> pagingtion(int page, int size) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "createdDate");
+        Pageable pageable = PageRequest.of(page - 1, size, sort);
+        Page<ProfileEntity> pageObj = profileRepository.findAll(pageable);
+        Long totalCount = pageObj.getTotalElements();
+        List<ProfileEntity> entityList = pageObj.getContent();
+        List<ProfileDTO> dtoList = new LinkedList<>();
+        for (ProfileEntity entity : entityList) {
+            ProfileDTO dto = new ProfileDTO();
+            dto.setId(entity.getId());
+            dto.setName(entity.getName());
+            dto.setPhone(entity.getPhone());
+            dto.setPassword(entity.getPassword());
+            dto.setRole(entity.getRole());
+            dto.setSurname(entity.getSurname());
+            dto.setStatus(entity.getStatus());
+            dto.setEmail(entity.getEmail());
+            dto.setVisible(entity.getVisible());
+            dtoList.add(dto);
+        }
+        Page<ProfileDTO> response = new PageImpl<ProfileDTO>(dtoList, pageable, totalCount);
+        return response;
+    }
+
+    public Integer delete(Integer id) {
+        ProfileEntity entity = get(id);
+        if (entity == null) {
+            throw new MethodNotAllowedExeption("Profile not found:)");
+        }
+        Integer num = profileRepository.changeVisible(Boolean.FALSE, GeneralStatus.BLOCK,id );
+        return num;
     }
 
     public ProfileDTO getById(Integer id) {
@@ -81,7 +128,7 @@ public class ProfileService {
     public ProfileEntity get(Integer id) {
         Optional<ProfileEntity> optional = profileRepository.findById(id);
         if (optional.isEmpty()) {
-            throw new AppBadRequestException("Student not found: " + id);
+            throw new AppBadRequestException("Profile not found: " + id);
         }
         return optional.get();
     }
@@ -113,6 +160,12 @@ public class ProfileService {
         dto.setPhone(entity.getPhone());
         return dto;
     }
+
+
+
+
+
+
 
    /*
     public ProfileEntity convertToEntity(ProfileDTO dto) {

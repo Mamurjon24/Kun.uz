@@ -1,4 +1,4 @@
-package com.example.dto;
+package com.example.dto.articletype;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,12 +11,12 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegionDTO {
+public class ArticleTypeDTO {
     private Integer id;
-    private Integer key;
     private String nameUz;
     private String nameRu;
     private String nameEng;
     private Boolean visible;
-    private LocalDateTime created_date;
+    private LocalDateTime createdDate;
+    private LocalDateTime updatedDate;
 }

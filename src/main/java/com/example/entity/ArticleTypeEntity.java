@@ -13,8 +13,6 @@ public class ArticleTypeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
-    @Column(name = "key")
-    private Integer key;
     @Column(name = "name_uz")
     private String nameUz;
     @Column(name = "name_ru")
@@ -24,5 +22,9 @@ public class ArticleTypeEntity {
     @Column(name = "visible")
     private Boolean visible;
     @Column(name = "created_date")
-    private LocalDateTime created_date;
+    private LocalDateTime createdDate;
+    @Column(name = "updated_date")
+    private LocalDateTime updatedDate;
+    @Column(name = "prt_id")
+    private Integer prtId;
 }
