@@ -1,5 +1,6 @@
-package com.example.dto.register;
+package com.example.dto.region;
 
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,5 +19,7 @@ public class RegionDTO {
     private String nameRu;
     private String nameEng;
     private Boolean visible;
-    private LocalDateTime created_date;
+    private LocalDateTime createdDate;
+    private LocalDateTime updatedDate;
+    private Integer prtId;
 }

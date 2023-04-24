@@ -1,0 +1,86 @@
+### Create Article
+POST localhost:8080/api/v1/article
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIzNDMxMjEsImlkIjozLCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNjgyNDI5NTIxLCJpc3MiOiJLdW51eiB0ZXN0IHBvcnRhbGkifQ.6nl5AmvKXt0xC0aVH1vLiKOtkODR__8Y-rAEMr4tMJNrGayUyoMisKBH48nejB_Lljdn6kVzPdZ6ldgr5h8f3A
+Content-Type:  application/json
+
+//{
+//  "title": "Nimadir",
+//  "description": "Qisqacha Nimadir",
+//  "content": "Bir bor ekan bir yoq ekan",
+//  "sharedCount": 5,
+//  "categoryId": 3,
+//  "regionId": 3,
+//  "moderatorId": 3,
+//  "articleTypeId": 1
+//}
+//{
+//  "title": "Nimadir2",
+//  "description": "Qisqacha Nimadir2",
+//  "content": "Bir bor ekan bir yoq ekan2",
+//  "sharedCount": 6,
+//  "categoryId": 1,
+//  "regionId": 1,
+//  "moderatorId": 3,
+//  "articleTypeId": 1
+//}
+//{
+//  "title": "Nimadir3",
+//  "description": "Qisqacha Nimadir3",
+//  "content": "Bir bor ekan bir yoq ekan3",
+//  "sharedCount": 2,
+//  "categoryId": 4,
+//  "regionId": 4,
+//  "moderatorId": 3,
+//  "articleTypeId": 1
+//}
+//{
+//  "title": "Nimadir6",
+//  "description": "Qisqacha Nimadir6",
+//  "content": "Bir bor ekan bir yoq ekan6",
+//  "sharedCount": 6,
+//  "categoryId": 2,
+//  "regionId": 2,
+//  "moderatorId": 2,
+//  "articleTypeId": 1
+//}
+{
+  "title": "Nimadir5",
+  "description": "Qisqacha Nimadir5",
+  "content": "Bir bor ekan bir yoq ekan5",
+  "sharedCount": 6,
+  "categoryId": 1,
+  "regionId": 1,
+  "articleTypeId": 1,
+  "moderatorId": 3
+}
+### Update Article
+PUT localhost:8080/api/v1/article/update
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIzMzQ3MzcsImlkIjozLCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNjgyNDIxMTM3LCJpc3MiOiJLdW51eiB0ZXN0IHBvcnRhbGkifQ.A9DD61d8EYsuNuOQ7bbhW0HPiwJeS6sOXbSHkJLEC6MaIBruMDz23BK5A5lJylstGgV30DTA2O5qOTTiav3FOQ
+Content-Type:  application/json
+
+{
+  "id": "67c59e28-dc54-4f08-af65-88eb2387dcc3",
+  "title": "Allanima6",
+  "description": "Qisqacha Allanima6",
+  "content": "Bir bor ekan bir yoq ekan6",
+  "sharedCount": 6,
+  "categoryId": 2,
+  "regionId": 2,
+  "moderatorId": 2,
+  "articleTypeId": 1
+}
+### ChangeStatus Article
+PUT localhost:8080/api/v1/article/changeStatus/67c59e28-dc54-4f08-af65-88eb2387dcc3
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIzMzUxMjgsImlkIjo0LCJyb2xlIjoiUFVCTElTSEVSIiwiZXhwIjoxNjgyNDIxNTI4LCJpc3MiOiJLdW51eiB0ZXN0IHBvcnRhbGkifQ.V9iCZXcv79xPghKxcLeU7UQO0GITm-dYNtmEFh6DHiA6Uj_YfWbbi7ytDDovkkL_vFu-k_lKuWnRmEFXXPzzfg
+Content-Type:  application/json
+
+### Delete Article
+PUT localhost:8080/api/v1/article/delete/a0783608-31c6-4418-af76-e6f84227d9db
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIyMjY1NDQsImlkIjozLCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNjgyMzEyOTQ0LCJpc3MiOiJLdW51eiB0ZXN0IHBvcnRhbGkifQ._pul_BM6Sc8cEcmXl4oF6ZRNCXakw5k8KRm__o0g8JFst2H3nZkl9XUJ3jZZ7FQGJYsElVHbSNgje1RczdyF4g
+Content-Type:  application/json
+
+### Get 5 Article
+GET localhost:8080/api/v1/article/getLastFiveArticleByType/1
+
+### Get 3 Article
+GET localhost:8080/api/v1/article/getLastThreeArticleByType/1

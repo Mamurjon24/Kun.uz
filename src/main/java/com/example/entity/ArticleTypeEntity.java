@@ -27,4 +27,5 @@ public class ArticleTypeEntity {
     private LocalDateTime updatedDate;
     @Column(name = "prt_id")
     private Integer prtId;
+
 }

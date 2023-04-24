@@ -1,56 +1,56 @@
-### Create Article
-POST localhost:8080/api/v1/articleType/
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODE5MDk1MjcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODE5OTU5MjcsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.NajD-X4FaRzEwPEs00Y9MZ_HkMC6gkfy4YZkJ2Hw_3SEZn0R4OVFD6QKcYpbi9P4pBal1zxC8bDIemjEdFzMSg
+### Create Category
+POST localhost:8080/api/v1/category
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIwODY0MjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODIxNzI4MjgsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.1M95AXImNj91615YCGyvIBZtdHXV_9hgC5RBA-ScctkNrMHzeZzJPIWdaH9MZfDJ0hwUZwWN7eZcjLi1ZliDIQ
 Content-Type:  application/json
 
 //{
-//  "nameUz": "Maqola №1",
-//  "nameRu": "Статия №1",
-//  "nameEng": "Article №1",
+//  "nameUz": "Mahalliy",
+//  "nameRu": "Местный",
+//  "nameEng": "Local",
 //  "visible": true
 //}
 //{
-//  "nameUz": "Maqola №2",
-//  "nameRu": "Статия №2",
-//  "nameEng": "Article №2",
+//  "nameUz": "Jahon",
+//  "nameRu": "МИР",
+//  "nameEng": "World",
 //  "visible": true
 //}
 //{
-//  "nameUz": "Maqola №3",
-//  "nameRu": "Статия №3",
-//  "nameEng": "Article №3",
+//  "nameUz": "IQTISODIYOT",
+//  "nameRu": "ЭКОНОМИКА",
+//  "nameEng": "ECONOMY",
 //  "visible": true
 //}
 {
-  "nameUz": "Maqola №4",
-  "nameRu": "Статия №4",
-  "nameEng": "Article №4",
+  "nameUz": "FAN-TEXNIKA",
+  "nameRu": "НАУКА И ТЕХНОЛОГИЯ",
+  "nameEng": "SCIENCE AND TECHNOLOGY",
   "visible": true
 }
-### Update profil
-PUT localhost:8080/api/v1/articleType/update
+### Update Category
+PUT localhost:8080/api/v1/category/update
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIwODY0MjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODIxNzI4MjgsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.1M95AXImNj91615YCGyvIBZtdHXV_9hgC5RBA-ScctkNrMHzeZzJPIWdaH9MZfDJ0hwUZwWN7eZcjLi1ZliDIQ
 Content-Type:  application/json
 
 {
-  "id" : 2,
-  "nameUz": "Maqola №2",
-  "nameRu": "Статя №2",
-  "nameEng": "Article №2",
+  "id" : 1,
+  "nameUz": "SPORT",
+  "nameRu": "ВИДЫ СПОРТА",
+  "nameEng": "SPORTS",
   "visible": true
 }
 
-### List profil
-PUT localhost:8080/api/v1/articleType/delete/2
+### List Category
+PUT localhost:8080/api/v1/category/delete/2
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIwODY0MjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODIxNzI4MjgsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.1M95AXImNj91615YCGyvIBZtdHXV_9hgC5RBA-ScctkNrMHzeZzJPIWdaH9MZfDJ0hwUZwWN7eZcjLi1ZliDIQ
 Content-Type:  application/json
 
-### Paging profil
-PUT localhost:8080/api/v1/articleType/paging
+### Paging Category
+PUT localhost:8080/api/v1/category/paging
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIwODY0MjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODIxNzI4MjgsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.1M95AXImNj91615YCGyvIBZtdHXV_9hgC5RBA-ScctkNrMHzeZzJPIWdaH9MZfDJ0hwUZwWN7eZcjLi1ZliDIQ
 Content-Type:  application/json
 
-### GetByLang profil
-PUT localhost:8080/api/v1/articleType/getByLang/Eng
+### GetByLang Category
+PUT localhost:8080/api/v1/category/getByLang/Uz
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIwODY0MjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODIxNzI4MjgsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.1M95AXImNj91615YCGyvIBZtdHXV_9hgC5RBA-ScctkNrMHzeZzJPIWdaH9MZfDJ0hwUZwWN7eZcjLi1ZliDIQ
 Content-Type:  application/json

@@ -18,5 +18,6 @@ public class CategoryDTO {
     private String nameRu;
     private String nameEng;
     private Boolean visible;
-    private LocalDateTime created_date;
+    private LocalDateTime createdDate;
+    private LocalDateTime updatedDate;
 }

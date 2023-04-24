@@ -31,9 +31,6 @@ public class ProfileController {
     public ResponseEntity<?> update(@RequestHeader("Authorization") String authorization,
                                     @RequestBody ProfileDTO dto) {
         JwtDTO jwtDTO = JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
-        if (!jwtDTO.getRole().equals(ProfileRole.ADMIN)) {
-            throw new MethodNotAllowedExeption("Method not allowed");
-        }
         return ResponseEntity.ok(profileService.update(jwtDTO.getId(), dto));
     }
 
@@ -50,7 +47,7 @@ public class ProfileController {
     public ResponseEntity<Page<ProfileDTO>> paging(@RequestHeader("Authorization") String authorization,
                                                    @RequestParam(value = "page", defaultValue = "1") int page,
                                                    @RequestParam(value = "size", defaultValue = "2") int size) {
-        JwtDTO jwtDTO = JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
+        JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
         Page<ProfileDTO> response = profileService.pagingtion(page, size);
         return ResponseEntity.ok(response);
     }
@@ -70,7 +67,7 @@ public class ProfileController {
     @PutMapping(value = "/delete/{id}")
     public ResponseEntity<?> delete(@RequestHeader("Authorization") String authorization,
                                     @PathVariable("id") Integer id) {
-        JwtDTO jwtDTO = JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
+        JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
         return ResponseEntity.ok(profileService.delete(id));
     }
 

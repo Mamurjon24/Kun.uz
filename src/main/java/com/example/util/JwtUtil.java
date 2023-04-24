@@ -81,5 +81,21 @@ public class JwtUtil {
         }
         return jwtDTO;
     }
+    public static JwtDTO getJwtDTOForArticle(String authorization, ProfileRole... roleList) {
+        String[] str = authorization.split(" ");
+        String jwt = str[1];
+        JwtDTO jwtDTO = JwtUtil.decode(jwt);
+        boolean roleFound = false;
+        for (ProfileRole role : roleList) {
+            if (jwtDTO.getRole().equals(role)) {
+                roleFound = true;
+                break;
+            }
+        }
+        if (!roleFound) {
+            throw new MethodNotAllowedExeption("You are not MODERATOR:)");
+        }
+        return jwtDTO;
+    }
 
 }

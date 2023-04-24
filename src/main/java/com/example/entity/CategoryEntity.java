@@ -23,5 +23,9 @@ public class CategoryEntity {
     @Column(name = "visible")
     private Boolean visible;
     @Column(name = "created_date")
-    private LocalDateTime created_date;
+    private LocalDateTime createdDate;
+    @Column(name = "updated_date")
+    private LocalDateTime updatedDate;
+    @Column(name = "prt_id")
+    private Integer prtId;
 }
