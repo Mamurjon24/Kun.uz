@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,4 +23,5 @@ public class ProfileDTO {
     private ProfileRole role;
     private GeneralStatus status;
     private Boolean visible;
+
 }

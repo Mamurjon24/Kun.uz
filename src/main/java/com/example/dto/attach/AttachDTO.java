@@ -1,20 +1,22 @@
-package com.example.dto.email;
+package com.example.dto.attach;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.swing.*;
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmailDTO {
-    private Integer id;
-    private String message;
-    private String email;
+public class AttachDTO {
+    private String id;
+    private String originalName;
+    private String path;
+    private Long size;
+    private String extension;
     private LocalDateTime createdData;
+    private String url;
 }

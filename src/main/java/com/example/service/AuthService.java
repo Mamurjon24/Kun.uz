@@ -4,25 +4,35 @@ import com.example.dto.auth.AuthDTO;
 import com.example.dto.auth.AuthResponseDTO;
 import com.example.dto.register.RegistrationDTO;
 import com.example.dto.register.RegistrationResponseDTO;
+import com.example.entity.EmailEntity;
 import com.example.entity.ProfileEntity;
 import com.example.enums.GeneralStatus;
 import com.example.enums.ProfileRole;
 import com.example.exp.AppBadRequestException;
 import com.example.exp.ItemNotFoundException;
-import com.example.repository.ProfileRepository;
+import com.example.exp.MethodNotAllowedExeption;
+import com.example.repository.EmailRepository;
+import com.example.repository.profile.ProfileRepository;
 import com.example.util.JwtUtil;
 import com.example.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class AuthService {
+    private static final int EMAIL_LIMIT = 1;
+    private static final int SMS_LIMIT = 4;
+    private static final long TIME_LIMIT = 60 * 1000; // 1 minute in milliseconds
     @Autowired
     private ProfileRepository profileRepository;
     @Autowired
     private MailSenderService mailSenderService;
+    @Autowired
+    private EmailRepository emailRepository;
 
     public AuthResponseDTO login(AuthDTO dto) {
         Optional<ProfileEntity> optional = profileRepository.findByEmailAndPasswordAndVisible(
@@ -43,6 +53,7 @@ public class AuthService {
         responseDTO.setJwt(JwtUtil.encode(entity.getId(), entity.getRole()));
         return responseDTO;
     }
+
     /*
     public ProfileDTO register(ProfileDTO dto) {
         Optional<ProfileEntity> optional = profileRepository.findByEmailAndPassword(dto.getEmail(),dto.getPassword());
@@ -68,10 +79,17 @@ public class AuthService {
     }
     */
     public RegistrationResponseDTO registration(RegistrationDTO dto) {
-        // check -?
         Optional<ProfileEntity> optional = profileRepository.findByEmail(dto.getEmail());
         if (optional.isPresent()) {
             throw new ItemNotFoundException("Email already exists mazgi.");
+        }
+        List<EmailEntity> entityList = emailRepository.findAllByEmailOrderByCreatedDataAsc(dto.getEmail());
+        if (entityList.size() > SMS_LIMIT) {
+            throw new MethodNotAllowedExeption("You Send More then " + SMS_LIMIT + " for " + EMAIL_LIMIT + " Mail pochta :)");
+        }
+        EmailEntity email = entityList.get(entityList.size() - 1);
+        if (LocalDateTime.now().minusMinutes(TIME_LIMIT).isAfter(email.getCreatedData())) {
+            throw new MethodNotAllowedExeption("Time Notogri exeption:)");
         }
         ProfileEntity entity = new ProfileEntity();
         entity.setName(dto.getName());
@@ -87,6 +105,7 @@ public class AuthService {
         String s = "Verification link was send to email: " + dto.getEmail();
         return new RegistrationResponseDTO(s);
     }
+
     public RegistrationResponseDTO emailVerification(String jwt) {
         // asjkdhaksdh.daskhdkashkdja
         String email = JwtUtil.decodeEmailVerification(jwt);

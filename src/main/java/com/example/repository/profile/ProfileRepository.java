@@ -1,4 +1,4 @@
-package com.example.repository;
+package com.example.repository.profile;
 
 import com.example.entity.ProfileEntity;
 import com.example.enums.GeneralStatus;

@@ -25,7 +25,7 @@ Content-Type:  application/json
   "surname": "Uzokov",
   "phone": "1213",
   "email": "uzokov29@gmail.com",
-  "password": "12345"
+  "password": "7"
 }
 
 ### Login
@@ -38,5 +38,5 @@ Content-Type:  application/json
 }
 
 ### Verification
-POST localhost:8080/api/v1/auth/verification/
+GET localhost:8080//api/v1/auth/verification/
 Content-Type:  application/json

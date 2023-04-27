@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.dto.jwt.JwtDTO;
 import com.example.dto.profile.ProfileDTO;
+import com.example.dto.profile.ProfileRequestcustomDTO;
 import com.example.enums.ProfileRole;
 import com.example.exp.MethodNotAllowedExeption;
 import com.example.service.ProfileService;
@@ -69,6 +70,11 @@ public class ProfileController {
                                     @PathVariable("id") Integer id) {
         JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
         return ResponseEntity.ok(profileService.delete(id));
+    }
+    @PostMapping(value = "/filter")
+    public ResponseEntity<?> filter(@RequestBody ProfileRequestcustomDTO filterDTO) {
+        profileService.filter(filterDTO);
+        return ResponseEntity.ok().build();
     }
 
 

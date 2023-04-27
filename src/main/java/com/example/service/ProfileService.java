@@ -1,12 +1,14 @@
 package com.example.service;
 
 import com.example.dto.profile.ProfileDTO;
+import com.example.dto.profile.ProfileRequestcustomDTO;
 import com.example.entity.ProfileEntity;
 import com.example.enums.GeneralStatus;
 import com.example.enums.ProfileRole;
 import com.example.exp.AppBadRequestException;
 import com.example.exp.MethodNotAllowedExeption;
-import com.example.repository.ProfileRepository;
+import com.example.repository.profile.ProfileCustomRepository;
+import com.example.repository.profile.ProfileRepository;
 import com.example.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
@@ -21,6 +23,8 @@ import java.util.Optional;
 public class ProfileService {
     @Autowired
     private ProfileRepository profileRepository;
+    @Autowired
+    private ProfileCustomRepository profileCustomRepository;
 
     public ProfileDTO create(ProfileDTO dto, Integer adminId) {
         // check - homework
@@ -147,6 +151,10 @@ public class ProfileService {
             dtoList.add(dto);
         });
         return dtoList;
+    }
+    public void filter(ProfileRequestcustomDTO filterDTO){
+        List<ProfileEntity> list = profileCustomRepository.filter(filterDTO);
+        System.out.println(list);
     }
 
     public ProfileDTO convertToDTO(ProfileEntity entity) {

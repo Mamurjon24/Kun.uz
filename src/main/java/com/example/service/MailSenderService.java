@@ -1,5 +1,7 @@
 package com.example.service;
 
+import com.example.entity.EmailEntity;
+import com.example.repository.EmailRepository;
 import com.example.util.JwtUtil;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -10,10 +12,14 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class MailSenderService {
     @Autowired
     private JavaMailSender javaMailSender;
+    @Autowired
+    private EmailRepository emailRepository;
     @Value("${spring.mail.username}")
     private String fromAccount;
     @Value("${server.host}")
@@ -24,11 +30,16 @@ public class MailSenderService {
         stringBuilder.append("Registration verification.\n");
         stringBuilder.append("Click to below link to complete registration\n");
         stringBuilder.append("Link: ");
-        stringBuilder.append(serverHost).append("/api/v1/auth/email/verification/");
+        stringBuilder.append(serverHost).append("/api/v1/auth/verification/");
         stringBuilder.append(JwtUtil.encode(toAccount));
         // https://kun.uz/api/v1/auth//email/verification/dasdasdasd.asdasdad.asda
         // localhost:8080/api/v1/auth/email/verification/dasdasdasd.asdasdad.asda
         sendEmail(toAccount, "Registration", stringBuilder.toString());
+        EmailEntity email = new EmailEntity();
+        email.setEmail(toAccount);
+        email.setMessage(stringBuilder.toString());
+        email.setCreatedData(LocalDateTime.now());
+        emailRepository.save(email);
     }
 
     public void sendRegistrationEmailMime(String toAccount) {

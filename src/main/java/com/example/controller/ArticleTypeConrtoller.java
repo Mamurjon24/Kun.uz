@@ -36,7 +36,7 @@ public class ArticleTypeConrtoller {
     public ResponseEntity<Page<ArticleTypeDTO>> paging(@RequestHeader("Authorization") String authorization,
                                                        @RequestParam(value = "page", defaultValue = "1") int page,
                                                        @RequestParam(value = "size", defaultValue = "2") int size) {
-        JwtDTO jwtDTO = JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
+        JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
         Page<ArticleTypeDTO> response = articleService.pagingtion(page, size);
         return ResponseEntity.ok(response);
     }
@@ -47,6 +47,7 @@ public class ArticleTypeConrtoller {
         JwtDTO jwtDTO = JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
         return ResponseEntity.ok(articleService.delete(id));
     }
+
     @PutMapping(value = "/getByLang/{lang}")
     public ResponseEntity<List<String>> getByLang(@PathVariable("lang") String lang,
                                                   @RequestHeader("Authorization") String authorization) {

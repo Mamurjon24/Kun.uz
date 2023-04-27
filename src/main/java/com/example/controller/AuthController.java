@@ -29,7 +29,7 @@ public class AuthController {
     public ResponseEntity<RegistrationResponseDTO> registration(@RequestBody RegistrationDTO dto) {
         return ResponseEntity.ok(authService.registration(dto));
     }
-    @PostMapping("/verification")
+    @GetMapping("/verification/{email}")
     public ResponseEntity<RegistrationResponseDTO> verification(@PathVariable("email") String text) {
         return ResponseEntity.ok(authService.emailVerification(text));
     }
