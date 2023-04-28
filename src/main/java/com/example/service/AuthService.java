@@ -87,9 +87,11 @@ public class AuthService {
         if (entityList.size() > SMS_LIMIT) {
             throw new MethodNotAllowedExeption("You Send More then " + SMS_LIMIT + " for " + EMAIL_LIMIT + " Mail pochta :)");
         }
-        EmailEntity email = entityList.get(entityList.size() - 1);
-        if (LocalDateTime.now().minusMinutes(TIME_LIMIT).isAfter(email.getCreatedData())) {
-            throw new MethodNotAllowedExeption("Time Notogri exeption:)");
+        if (entityList.size() > 0){
+            EmailEntity email = entityList.get(entityList.size() - 1);
+            if (LocalDateTime.now().minusMinutes(TIME_LIMIT).isAfter(email.getCreatedData())) {
+                throw new MethodNotAllowedExeption("Time Notogri exeption:)");
+            }
         }
         ProfileEntity entity = new ProfileEntity();
         entity.setName(dto.getName());
@@ -100,7 +102,7 @@ public class AuthService {
         entity.setPassword(MD5Util.getMd5Hash(dto.getPassword()));
         entity.setStatus(GeneralStatus.REGISTER);
         entity.setVisible(Boolean.FALSE);
-        mailSenderService.sendRegistrationEmail(dto.getEmail());
+        mailSenderService.sendRegistrationEmailMime(dto.getEmail());
         profileRepository.save(entity);
         String s = "Verification link was send to email: " + dto.getEmail();
         return new RegistrationResponseDTO(s);
@@ -118,6 +120,7 @@ public class AuthService {
             throw new AppBadRequestException("Wrong status");
         }
         entity.setStatus(GeneralStatus.ACTIVE);
+        entity.setVisible(Boolean.TRUE);
         profileRepository.save(entity);
         return new RegistrationResponseDTO("Registration Done");
     }

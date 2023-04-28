@@ -1,10 +1,13 @@
 package com.example.controller;
 
 import com.example.dto.article.ArticleDTO;
+import com.example.dto.article.ArticleRequestDTO;
+import com.example.dto.article.ArticleUpdateRequestDTO;
 import com.example.dto.jwt.JwtDTO;
 import com.example.enums.ProfileRole;
 import com.example.service.ArticleService;
 import com.example.util.JwtUtil;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,15 +20,15 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
-    @PostMapping({"", "/"})
-    public ResponseEntity<ArticleDTO> create(@RequestBody ArticleDTO dto,
-                                             @RequestHeader("Authorization") String authorization) {
-        JwtDTO jwtDTO = JwtUtil.getJwtDTOForArticle(authorization, ProfileRole.MODERATOR);
-        return ResponseEntity.ok(articleService.create(dto, jwtDTO.getId()));
+    @PostMapping("")
+    public ResponseEntity<ArticleRequestDTO> create(@RequestBody @Valid ArticleRequestDTO dto,
+                                                    @RequestHeader("Authorization") String authorization) {
+        JwtDTO jwt = JwtUtil.getJwtDTO(authorization, ProfileRole.MODERATOR);
+        return ResponseEntity.ok(articleService.create(dto, jwt.getId()));
     }
 
     @PutMapping (value = "/update")
-    public ResponseEntity<?> update(@RequestBody ArticleDTO dto,
+    public ResponseEntity<?> update(@RequestBody ArticleUpdateRequestDTO dto,
                                     @RequestHeader("Authorization") String authorization) {
         JwtDTO jwtDTO = JwtUtil.getJwtDTOForArticle(authorization, ProfileRole.MODERATOR);
         return ResponseEntity.ok(articleService.update(dto,jwtDTO.getId()));
@@ -34,8 +37,8 @@ public class ArticleController {
     @PutMapping(value = "/delete/{id}")
     public ResponseEntity<?> delete(@RequestHeader("Authorization") String authorization,
                                     @PathVariable("id") String id) {
-        JwtUtil.getJwtDTOForArticle(authorization, ProfileRole.MODERATOR);
-        return ResponseEntity.ok(articleService.delete(id));
+        JwtDTO jwtDTO = JwtUtil.getJwtDTOForArticle(authorization, ProfileRole.MODERATOR);
+        return ResponseEntity.ok(articleService.delete(jwtDTO.getId(),id));
     }
 
     @PutMapping(value = "/changeStatus/{id}")

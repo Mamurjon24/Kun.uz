@@ -1,7 +1,6 @@
 package com.example.controller;
 
 import com.example.service.AttachService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -33,7 +32,6 @@ public class AttachController {
         }
         return null;
     }
-
 
     @GetMapping(value = "/open_general/{fileName}", produces = MediaType.ALL_VALUE)
     public byte[] open_general(@PathVariable("fileName") String fileName) {

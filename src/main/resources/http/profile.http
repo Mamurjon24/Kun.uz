@@ -1,6 +1,6 @@
 ### Create profle
 POST localhost:8080/api/v1/profile
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODE5MDk1MjcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODE5OTU5MjcsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.NajD-X4FaRzEwPEs00Y9MZ_HkMC6gkfy4YZkJ2Hw_3SEZn0R4OVFD6QKcYpbi9P4pBal1zxC8bDIemjEdFzMSg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI2OTU2MDIsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODI3ODIwMDMsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.yvTLeG6ANXkTJi1UdipJr_Sc9amSNouWglmZqoZJMOlNJkMdv4qDya98znc9zzKtlEFO-RQx4d31CrCnFV2IpA
 Content-Type:  application/json
 
 //{
@@ -12,34 +12,33 @@ Content-Type:  application/json
 //  "role": "MODERATOR"
 //}
 {
-  "name": "Vali",
-  "surname": "Valiyev",
-  "email": "vali@mail.ru",
-  "phone": "3",
-  "password": "3",
+  "name": "Toshmat",
+  "surname": "Toshmatov",
+  "email": "toshmat@mail.ru",
+  "phone": "4",
+  "password": "4",
   "role": "PUBLISHER"
 }
 
 ### Update profle
 PUT localhost:8080/api/v1/profile/updateByProfile
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODE5MDk1MjcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODE5OTU5MjcsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.NajD-X4FaRzEwPEs00Y9MZ_HkMC6gkfy4YZkJ2Hw_3SEZn0R4OVFD6QKcYpbi9P4pBal1zxC8bDIemjEdFzMSg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI2OTY5MDEsImlkIjo1LCJyb2xlIjoiUFVCTElTSEVSIiwiZXhwIjoxNjgyNzgzMzAxLCJpc3MiOiJLdW51eiB0ZXN0IHBvcnRhbGkifQ.ojPYZlcoQstyL2J3QGlVjUhXh8suJKzFozbqIXylEKRC1fRaTqnUVTvxPawebaXQUqJj__4AT72wfJTu01FOiQ
 Content-Type:  application/json
 
 {
-  "id": 2,
-  "name": "Toshmat",
-  "surname": "Toshmatov",
-  "email": "toshmat@mail.ru",
-  "phone": "121345",
-  "password": "1",
-  "role": "PUBLISHER",
+  "name": "Mamat",
+  "surname": "Mamatov",
+  "email": "mamat@mail.ru",
+  "phone": "5",
+  "password": "5",
+  "role": "ADMIN",
   "status": "ACTIVE",
   "visible": "true"
 }
 
 ### Update profle
 PUT localhost:8080/api/v1/profile/update
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIyNDI5MjIsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODIzMjkzMjIsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.1hcud2opIwScYKp1s8B7N5XIv_oAkIul_ElmT2IS_7bWZv2U50DBMmDdR7tKGh3ogfVuMr_JAVNJ8up16dHvtA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI2OTU2MDIsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODI3ODIwMDMsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.yvTLeG6ANXkTJi1UdipJr_Sc9amSNouWglmZqoZJMOlNJkMdv4qDya98znc9zzKtlEFO-RQx4d31CrCnFV2IpA
 Content-Type:  application/json
 
 {
@@ -59,12 +58,12 @@ GET http://localhost:8080/api/v1/profile/getProfileList
 
 ### List profle
 PUT localhost:8080/api/v1/profile/paging
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODE5MDk1MjcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODE5OTU5MjcsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.NajD-X4FaRzEwPEs00Y9MZ_HkMC6gkfy4YZkJ2Hw_3SEZn0R4OVFD6QKcYpbi9P4pBal1zxC8bDIemjEdFzMSg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI2OTU2MDIsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODI3ODIwMDMsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.yvTLeG6ANXkTJi1UdipJr_Sc9amSNouWglmZqoZJMOlNJkMdv4qDya98znc9zzKtlEFO-RQx4d31CrCnFV2IpA
 Content-Type:  application/json
 
 ### List profle
-PUT localhost:8080/api/v1/profile/delete/2
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODE5MDk1MjcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODE5OTU5MjcsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.NajD-X4FaRzEwPEs00Y9MZ_HkMC6gkfy4YZkJ2Hw_3SEZn0R4OVFD6QKcYpbi9P4pBal1zxC8bDIemjEdFzMSg
+PUT localhost:8080/api/v1/profile/delete/5
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI2OTU2MDIsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODI3ODIwMDMsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.yvTLeG6ANXkTJi1UdipJr_Sc9amSNouWglmZqoZJMOlNJkMdv4qDya98znc9zzKtlEFO-RQx4d31CrCnFV2IpA
 Content-Type:  application/json
 
 ### Course filter
@@ -74,4 +73,10 @@ Content-Type: application/json
 {
   "name": "Ali"
 }
+
+### Update Photoprofle
+PUT localhost:8080/api/v1/profile/updatePhoto/7f0dcb2e-d5f2-4c17-8d61-9f381c48078e
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI2MDI1OTAsImlkIjozLCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNjgyNjg4OTkxLCJpc3MiOiJLdW51eiB0ZXN0IHBvcnRhbGkifQ.TzLaejKAA7es3kvaQXuh2sQiJUtoSXP8TQ8cie4Gu45dLPNnpBmV2w1bly3vkl1CH97B-7FLgOoJbXJsyCUEZg
+Content-Type:  application/json
+
 

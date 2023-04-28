@@ -10,44 +10,60 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Entity(name = "article")
+@Table(name = "article")
+@Entity
 public class ArticleEntity {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     private String id;
-    @Column(name = "title")
+    @Column(name = "title", columnDefinition = "TEXT")
     private String title;
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
     @Column(name = "content", columnDefinition = "TEXT")
     private String content;
     @Column(name = "shared_count")
     private Integer sharedCount;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "region_id")
+    @Column(name = "region_id")
+    private Integer regionId;
+    @ManyToOne
+    @JoinColumn(name = "region_id", insertable = false, updatable = false)
     private RegionEntity region;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
+    @Column(name = "category_id")
+    private Integer categoryId;
+    @ManyToOne
+    @JoinColumn(name = "category_id", insertable = false, updatable = false)
     private CategoryEntity category;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "moderator_id")
+    @Column(name = "moderator_id")
+    private Integer moderatorId;
+    @ManyToOne
+    @JoinColumn(name = "moderator_id", insertable = false, updatable = false)
     private ProfileEntity moderator;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "publisher_id")
+    @Column(name = "publisher_id")
+    private Integer publisherId;
+    @ManyToOne
+    @JoinColumn(name = "publisher_id", insertable = false, updatable = false)
     private ProfileEntity publisher;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "article_type")
-    private ArticleTypeEntity articleType;
+    @Column(name = "attach_id")
+    private Integer attachId;
+    @ManyToOne
+    @JoinColumn(name = "attach_id", insertable = false, updatable = false)
+    private AttachEntity attach;
+    @Column(name = "articleType_id")
+    private Integer typeId;
+    @ManyToOne
+    @JoinColumn(name = "articleType_id", insertable = false, updatable = false)
+    private ArticleTypeEntity type;
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private ArticleStatus status;
     @Column(name = "created_date")
-    private LocalDateTime createdDate;
+    private LocalDateTime createdDate = LocalDateTime.now();
     @Column(name = "published_date")
     private LocalDateTime publishedDate;
     @Column(name = "visible")
-    private Boolean visible;
+    private Boolean visible = Boolean.TRUE;
     @Column(name = "view_count")
     private Integer viewCount;
 

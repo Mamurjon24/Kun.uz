@@ -19,7 +19,7 @@ public class MailSenderService {
     @Autowired
     private JavaMailSender javaMailSender;
     @Autowired
-    private EmailRepository emailRepository;
+    private EmailService emailService;
     @Value("${spring.mail.username}")
     private String fromAccount;
     @Value("${server.host}")
@@ -35,11 +35,7 @@ public class MailSenderService {
         // https://kun.uz/api/v1/auth//email/verification/dasdasdasd.asdasdad.asda
         // localhost:8080/api/v1/auth/email/verification/dasdasdasd.asdasdad.asda
         sendEmail(toAccount, "Registration", stringBuilder.toString());
-        EmailEntity email = new EmailEntity();
-        email.setEmail(toAccount);
-        email.setMessage(stringBuilder.toString());
-        email.setCreatedData(LocalDateTime.now());
-        emailRepository.save(email);
+        emailService.create(toAccount,stringBuilder.toString());
     }
 
     public void sendRegistrationEmailMime(String toAccount) {
@@ -52,6 +48,7 @@ public class MailSenderService {
         stringBuilder.append(JwtUtil.encode(toAccount)).append("\">");
         stringBuilder.append("Click to the link to complete registration</a></p>");
         sendEmailMime(toAccount, "Registration", stringBuilder.toString());
+        emailService.create(toAccount,stringBuilder.toString());
     }
 
     private void sendEmail(String toAccount, String subject, String text) {

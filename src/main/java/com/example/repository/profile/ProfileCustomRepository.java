@@ -1,7 +1,6 @@
 package com.example.repository.profile;
 
-import com.example.dto.profile.ProfileRequestcustomDTO;
-
+import com.example.dto.profile.ProfileRequestCustomDTO;
 import com.example.entity.ProfileEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
@@ -23,7 +22,7 @@ public class ProfileCustomRepository {
         List profileList = query.getResultList();
         return profileList;
     }
-    public List<ProfileEntity> filter(ProfileRequestcustomDTO filterDTO) {
+    public List<ProfileEntity> filter(ProfileRequestCustomDTO filterDTO) {
         Map<String, Object> params = new HashMap<>();
         StringBuilder builder = new StringBuilder();
         builder.append("Select p From ProfileEntity as p where id in (1,2,3,4,5) ");

@@ -1,6 +1,8 @@
 package com.example.service;
 
+import com.example.dto.category.CategoryDTO;
 import com.example.dto.email.EmailDTO;
+import com.example.entity.CategoryEntity;
 import com.example.entity.EmailEntity;
 import com.example.repository.EmailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +20,24 @@ public class EmailService {
     @Autowired
     private EmailRepository emailRepository;
 
+    public void create(String toAccount, String message) {
+        EmailEntity email = new EmailEntity();
+        email.setEmail(toAccount);
+        email.setMessage(message);
+        email.setCreatedData(LocalDateTime.now());
+        emailRepository.save(email);
+    }
+
     public List<EmailDTO> findByEmail(String email) {
         List<EmailDTO> dtoList = convertToDTO(emailRepository.findByEmail(email));
         return dtoList;
     }
+
     public List<EmailDTO> findByCreatedData(LocalDate createdData) {
         List<EmailDTO> dtoList = convertToDTO(emailRepository.findByCreatedDataBetween(createdData.atStartOfDay(), LocalDateTime.of(createdData, LocalTime.MAX)));
         return dtoList;
     }
+
     public Page<EmailDTO> pagingtion(int page, int size) {
         Sort sort = Sort.by(Sort.Direction.DESC, "createdData");
         Pageable pageable = PageRequest.of(page - 1, size, sort);
@@ -36,6 +48,7 @@ public class EmailService {
         Page<EmailDTO> response = new PageImpl<EmailDTO>(dtoList, pageable, totalCount);
         return response;
     }
+
     public List<EmailDTO> convertToDTO(List<EmailEntity> entityList) {
         List<EmailDTO> dtoList = new LinkedList<>();
         entityList.forEach(entity -> {

@@ -2,9 +2,8 @@ package com.example.controller;
 
 import com.example.dto.jwt.JwtDTO;
 import com.example.dto.profile.ProfileDTO;
-import com.example.dto.profile.ProfileRequestcustomDTO;
+import com.example.dto.profile.ProfileRequestCustomDTO;
 import com.example.enums.ProfileRole;
-import com.example.exp.MethodNotAllowedExeption;
 import com.example.service.ProfileService;
 import com.example.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,11 +67,21 @@ public class ProfileController {
     @PutMapping(value = "/delete/{id}")
     public ResponseEntity<?> delete(@RequestHeader("Authorization") String authorization,
                                     @PathVariable("id") Integer id) {
-        JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
-        return ResponseEntity.ok(profileService.delete(id));
+        JwtDTO jwtDTO = JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
+        return ResponseEntity.ok(profileService.delete(jwtDTO.getId(),id));
     }
+
+    @PutMapping(value = "/updatePhoto/{photoId}")
+    public ResponseEntity<?> updatePhoto(@RequestHeader("Authorization") String authorization,
+                                         @PathVariable("photoId") String photoId) {
+        String[] str = authorization.split(" ");
+        String jwt = str[1];
+        JwtDTO jwtDTO = JwtUtil.decode(jwt);
+        return ResponseEntity.ok(profileService.updatePhoto(jwtDTO.getId(),photoId));
+    }
+
     @PostMapping(value = "/filter")
-    public ResponseEntity<?> filter(@RequestBody ProfileRequestcustomDTO filterDTO) {
+    public ResponseEntity<?> filter(@RequestBody ProfileRequestCustomDTO filterDTO) {
         profileService.filter(filterDTO);
         return ResponseEntity.ok().build();
     }

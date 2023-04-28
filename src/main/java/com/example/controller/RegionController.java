@@ -44,8 +44,8 @@ public class RegionController {
     @PutMapping(value = "/delete/{id}")
     public ResponseEntity<?> delete(@RequestHeader("Authorization") String authorization,
                                     @PathVariable("id") Integer id) {
-        JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
-        return ResponseEntity.ok(regionService.delete(id));
+        JwtDTO jwtDTO = JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
+        return ResponseEntity.ok(regionService.delete(jwtDTO.getId(),id));
     }
 
     @PutMapping(value = "/getByLang/{lang}")

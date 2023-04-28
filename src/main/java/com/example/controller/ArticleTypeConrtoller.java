@@ -45,7 +45,7 @@ public class ArticleTypeConrtoller {
     public ResponseEntity<?> delete(@RequestHeader("Authorization") String authorization,
                                     @PathVariable("id") Integer id) {
         JwtDTO jwtDTO = JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
-        return ResponseEntity.ok(articleService.delete(id));
+        return ResponseEntity.ok(articleService.delete(jwtDTO.getId(),id));
     }
 
     @PutMapping(value = "/getByLang/{lang}")

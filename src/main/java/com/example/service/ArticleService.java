@@ -1,10 +1,12 @@
 package com.example.service;
 
 import com.example.dto.article.ArticleDTO;
+import com.example.dto.article.ArticleRequestDTO;
+import com.example.dto.article.ArticleUpdateRequestDTO;
 import com.example.entity.ArticleEntity;
 import com.example.enums.ArticleStatus;
 import com.example.exp.AppBadRequestException;
-import com.example.exp.MethodNotAllowedExeption;
+import com.example.exp.ItemNotFoundException;
 import com.example.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,54 +20,43 @@ import java.util.Optional;
 public class ArticleService {
     @Autowired
     private ArticleRepository articleRepository;
-    @Autowired
-    private CategoryService categoryService;
-    @Autowired
-    private RegionService regionService;
-    @Autowired
-    private ProfileService profileService;
-    @Autowired
-    private ArticleTypeService articleTypeService;
 
-    public ArticleDTO create(ArticleDTO dto, Integer id) {
-        isValidProfile(dto);
+    public ArticleRequestDTO create(ArticleRequestDTO dto, Integer moderId) {
+        // check
+//        ProfileEntity moderator = profileService.get(moderId);
+//        RegionEntity region = regionService.get(dto.getRegionId());
+//        CategoryEntity category = categoryService.get(dto.getCategoryId());
+        Optional<ArticleEntity> optional = articleRepository.findByTitle(dto.getTitle());
+        if(optional.isEmpty()) {
+            throw new ItemNotFoundException(" This Title is already use bro! :)");
+        }
         ArticleEntity entity = new ArticleEntity();
         entity.setTitle(dto.getTitle());
         entity.setDescription(dto.getDescription());
         entity.setContent(dto.getContent());
-        entity.setSharedCount(dto.getSharedCount());
-        entity.setCategory(categoryService.get(dto.getCategoryId()));
-        entity.setRegion(regionService.get(dto.getRegionId()));
-        entity.setModerator(profileService.get(id));
-        entity.setArticleType(articleTypeService.get(dto.getArticleTypeId()));
-        entity.setCreatedDate(LocalDateTime.now());
-        entity.setVisible(Boolean.FALSE);
-        entity.setStatus(ArticleStatus.NOTPUBLISHED);
+        entity.setModeratorId(moderId);
+        entity.setRegionId(dto.getRegionId());
+        entity.setCategoryId(dto.getCategoryId());
+        entity.setAttachId(dto.getAttachId());
+        entity.setTypeId(dto.getTypeId());
         articleRepository.save(entity);
-        dto.setId(entity.getId());
         return dto;
     }
 
-    public void isValidProfile(ArticleDTO dto) {
-        Optional<ArticleEntity> optional = articleRepository.findAllByTitle(dto.getTitle());
-        if (optional.isPresent()) {
-            throw new MethodNotAllowedExeption("This Article already use :)");
+    public boolean update(ArticleUpdateRequestDTO dto, Integer id) {
+        Optional<ArticleEntity> optional = articleRepository.findById(dto.getId());
+        if(optional.isEmpty()) {
+            throw new ItemNotFoundException(" Title must be in Database :)");
         }
-    }
-
-    public boolean update(ArticleDTO dto, Integer id) {
-        ArticleEntity entity = get(dto.getId());
+        ArticleEntity entity = optional.get();
         entity.setTitle(dto.getTitle());
         entity.setDescription(dto.getDescription());
         entity.setContent(dto.getContent());
-        entity.setSharedCount(dto.getSharedCount());
-        entity.setCategory(categoryService.get(dto.getCategoryId()));
-        entity.setRegion(regionService.get(dto.getRegionId()));
-        entity.setModerator(profileService.get(id));
-        entity.setArticleType(articleTypeService.get(dto.getArticleTypeId()));
-        entity.setCreatedDate(LocalDateTime.now());
-        entity.setVisible(Boolean.FALSE);
-        entity.setStatus(ArticleStatus.NOTPUBLISHED);
+        entity.setModeratorId(id);
+        entity.setRegionId(dto.getRegionId());
+        entity.setCategoryId(dto.getCategoryId());
+        entity.setAttachId(dto.getAttachId());
+        entity.setTypeId(dto.getTypeId());
         articleRepository.save(entity);
         return true;
     }
@@ -78,21 +69,15 @@ public class ArticleService {
         return optional.get();
     }
 
-    public Boolean delete(String id) {
-        ArticleEntity entity = get(id);
-        if (entity == null) {
-            throw new MethodNotAllowedExeption("Article not found:)");
-        }
-        articleRepository.changeVisible(Boolean.FALSE, ArticleStatus.NOTPUBLISHED, id);
-        return true;
+    public Integer delete(Integer modetorId , String articleId) {
+        get(articleId);
+        Integer response = articleRepository.changeVisible(Boolean.FALSE, ArticleStatus.NOTPUBLISHED,modetorId ,articleId);
+        return response;
     }
 
     public Boolean changeStatus(String id, Integer publisherId) {
         ArticleEntity entity = get(id);
-        if (entity == null) {
-            throw new MethodNotAllowedExeption("Article not found:)");
-        }
-        entity.setPublisher(profileService.get(publisherId));
+        entity.setPublisherId(publisherId);
         entity.setPublishedDate(LocalDateTime.now());
         entity.setStatus(ArticleStatus.PUBLISHED);
         articleRepository.changeStatus(Boolean.TRUE, ArticleStatus.PUBLISHED, id);
@@ -103,11 +88,13 @@ public class ArticleService {
         List<ArticleDTO> dtoList = convertToDTO(articleRepository.findLastFiveArticleByType(articleTypeId));
         return dtoList;
     }
+
     public List<ArticleDTO> findLastThreeArticleByType(Integer articleTypeId) {
         List<ArticleDTO> dtoList = convertToDTO(articleRepository.findLastThreeArticleByType(articleTypeId));
         return dtoList;
     }
-    public List<ArticleDTO> convertToDTO(List<ArticleEntity> entityList){
+
+    public List<ArticleDTO> convertToDTO(List<ArticleEntity> entityList) {
         List<ArticleDTO> dtoList = new LinkedList<>();
         entityList.forEach(entity -> {
             ArticleDTO dto = new ArticleDTO();
@@ -116,7 +103,7 @@ public class ArticleService {
             dto.setContent(entity.getContent());
             dto.setTitle(entity.getTitle());
             dto.setStatus(entity.getStatus());
-            dto.setArticleTypeId(entity.getArticleType().getId());
+            dto.setArticleTypeId(entity.getType().getId());
             dto.setVisible(entity.getVisible());
             dto.setCategoryId(entity.getCategory().getId());
             dto.setModeratorId(entity.getModerator().getId());
@@ -130,12 +117,13 @@ public class ArticleService {
         });
         return dtoList;
     }
-    public List<ArticleEntity> convertToEntity(List<ArticleDTO> dtoList){
-        List<ArticleEntity> entityList = new LinkedList<>();
-        dtoList.forEach(dto ->{
-            ArticleEntity entity = new ArticleEntity();
-        });
-        return null;
-    }
+
+//    public List<ArticleEntity> convertToEntity(List<ArticleDTO> dtoList) {
+//        List<ArticleEntity> entityList = new LinkedList<>();
+//        dtoList.forEach(dto -> {
+//            ArticleEntity entity = new ArticleEntity();
+//        });
+//        return null;
+//    }
 
 }

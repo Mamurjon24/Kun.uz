@@ -15,19 +15,19 @@ public interface CategoryRepository extends CrudRepository<CategoryEntity, Integ
     Optional<CategoryEntity> findByNameUzAndNameRuAndNameEng(String nameUz, String nameRu, String nameEng);
     @Transactional
     @Modifying
-    @Query("update category set visible = :visible where id = :id")
-    Integer changeRegionVisible(@Param("visible") Boolean visible, @Param("id") Integer id);
+    @Query("update CategoryEntity set visible = :visible,prtId =:prtId where id = :id")
+    Integer changeRegionVisible(@Param("visible") Boolean visible, @Param("prtId") Integer prtId,@Param("id") Integer id);
 
     //List<String> findAllByNameUzOrderByCreatedDate(String nameUz);
-    @Query("SELECT nameUz FROM category ORDER BY createdDate ASC ")
+    @Query("SELECT nameUz FROM CategoryEntity ORDER BY createdDate ASC ")
     List<String> findAllByNameUzOrderByCreatedDate();
 
     //List<String> findAllByNameRuOrderByCreatedDate(String nameRu);
-    @Query("SELECT nameRu FROM category ORDER BY createdDate ASC ")
+    @Query("SELECT nameRu FROM CategoryEntity ORDER BY createdDate ASC ")
     List<String> findAllByNameRuOrderByCreatedDate();
 
     //List<String> findAllByNameEngOrderByCreatedDate(String nameEng);
-    @Query("SELECT nameEng FROM category ORDER BY createdDate ASC ")
+    @Query("SELECT nameEng FROM CategoryEntity ORDER BY createdDate ASC ")
     List<String> findAllByNameEngOrderByCreatedDate();
 
 }

@@ -19,9 +19,8 @@ public interface ProfileRepository extends CrudRepository<ProfileEntity, Integer
 
     @Transactional
     @Modifying
-    @Query("update profile set visible = :visible, status = :status where id = :id")
-    Integer changeVisible(@Param("visible") Boolean visible, @Param("status") GeneralStatus status, @Param("id") Integer id);
-
+    @Query("update ProfileEntity set visible = :visible, status = :status,prtId = :prtId where id = :id")
+    Integer changeVisible(@Param("visible") Boolean visible, @Param("status") GeneralStatus status, @Param("prtId") Integer prtId, @Param("id") Integer id);
 
     Optional<ProfileEntity> findByEmail(String email);
 }

@@ -1,7 +1,7 @@
 package com.example.service;
 
 import com.example.dto.profile.ProfileDTO;
-import com.example.dto.profile.ProfileRequestcustomDTO;
+import com.example.dto.profile.ProfileRequestCustomDTO;
 import com.example.entity.ProfileEntity;
 import com.example.enums.GeneralStatus;
 import com.example.enums.ProfileRole;
@@ -13,7 +13,6 @@ import com.example.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
@@ -36,7 +35,6 @@ public class ProfileService {
         entity.setEmail(dto.getEmail());
         entity.setRole(dto.getRole());
         entity.setPassword(MD5Util.getMd5Hash(dto.getPassword())); // MD5 ?
-        entity.setCreatedDate(LocalDateTime.now());
         entity.setPrtId(adminId);
         entity.setVisible(true);
         entity.setStatus(GeneralStatus.ACTIVE);
@@ -114,12 +112,9 @@ public class ProfileService {
         return response;
     }
 
-    public Integer delete(Integer id) {
-        ProfileEntity entity = get(id);
-        if (entity == null) {
-            throw new MethodNotAllowedExeption("Profile not found:)");
-        }
-        Integer num = profileRepository.changeVisible(Boolean.FALSE, GeneralStatus.BLOCK,id );
+    public Integer delete(Integer adminId , Integer id) {
+        get(id);
+        Integer num = profileRepository.changeVisible(Boolean.FALSE, GeneralStatus.BLOCK,adminId, id);
         return num;
     }
 
@@ -152,7 +147,15 @@ public class ProfileService {
         });
         return dtoList;
     }
-    public void filter(ProfileRequestcustomDTO filterDTO){
+
+    public Boolean updatePhoto(Integer profileId, String photoId) {
+        ProfileEntity entity = get(profileId);
+        entity.setPhotoId(photoId);
+        profileRepository.save(entity);
+        return true;
+    }
+
+    public void filter(ProfileRequestCustomDTO filterDTO) {
         List<ProfileEntity> list = profileCustomRepository.filter(filterDTO);
         System.out.println(list);
     }
@@ -168,12 +171,6 @@ public class ProfileService {
         dto.setPhone(entity.getPhone());
         return dto;
     }
-
-
-
-
-
-
 
    /*
     public ProfileEntity convertToEntity(ProfileDTO dto) {

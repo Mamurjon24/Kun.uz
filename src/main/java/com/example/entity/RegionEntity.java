@@ -7,13 +7,12 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 @Getter
 @Setter
-@Entity(name="region")
+@Table(name ="region")
+@Entity
 public class RegionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
-    @Column(name = "key")
-    private Integer key;
     @Column(name = "name_uz")
     private String nameUz;
     @Column(name = "name_ru")

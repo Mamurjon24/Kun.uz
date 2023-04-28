@@ -18,19 +18,19 @@ public interface ArticleTypeRepository extends CrudRepository<ArticleTypeEntity,
 
     @Transactional
     @Modifying
-    @Query("update article_type set visible = :visible where id = :id")
-    Integer changeArticleVisible(@Param("visible") Boolean visible, @Param("id") Integer id);
+    @Query("update ArticleTypeEntity set visible = :visible,prtId =:prtId where id = :id")
+    Integer changeArticleVisible(@Param("visible") Boolean visible, @Param("prtId") Integer prtId,@Param("id") Integer id);
 
     //List<String> findAllByNameUzOrderByCreatedDate(String nameUz);
-    @Query("SELECT nameUz FROM article_type ORDER BY createdDate ASC ")
+    @Query("SELECT nameUz FROM ArticleTypeEntity ORDER BY createdDate ASC ")
     List<String> findAllByNameUzOrderByCreatedDate();
 
     //List<String> findAllByNameRuOrderByCreatedDate(String nameRu);
-    @Query("SELECT nameRu FROM article_type ORDER BY createdDate ASC ")
+    @Query("SELECT nameRu FROM ArticleTypeEntity ORDER BY createdDate ASC ")
     List<String> findAllByNameRuOrderByCreatedDate();
 
     //List<String> findAllByNameEngOrderByCreatedDate(String nameEng);
-    @Query("SELECT nameEng FROM article_type ORDER BY createdDate ASC ")
+    @Query("SELECT nameEng FROM ArticleTypeEntity ORDER BY createdDate ASC ")
     List<String> findAllByNameEngOrderByCreatedDate();
 
 

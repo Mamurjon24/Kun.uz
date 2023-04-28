@@ -17,18 +17,18 @@ public interface RegionRepository extends CrudRepository<RegionEntity, Integer>,
 
     @Transactional
     @Modifying
-    @Query("update region set visible = :visible where id = :id")
-    Integer changeRegionVisible(@Param("visible") Boolean visible, @Param("id") Integer id);
+    @Query("update RegionEntity set visible = :visible,prtId =:prtId where id = :id")
+    Integer changeRegionVisible(@Param("visible") Boolean visible, @Param("prtId") Integer prtId, @Param("id") Integer id);
 
     //List<String> findAllByNameUzOrderByCreatedDate(String nameUz);
-    @Query("SELECT nameUz FROM region ORDER BY createdDate ASC ")
+    @Query("SELECT nameUz FROM RegionEntity ORDER BY createdDate ASC ")
     List<String> findAllByNameUzOrderByCreatedDate();
 
     //List<String> findAllByNameRuOrderByCreatedDate(String nameRu);
-    @Query("SELECT nameRu FROM region ORDER BY createdDate ASC ")
+    @Query("SELECT nameRu FROM RegionEntity ORDER BY createdDate ASC ")
     List<String> findAllByNameRuOrderByCreatedDate();
 
     //List<String> findAllByNameEngOrderByCreatedDate(String nameEng);
-    @Query("SELECT nameEng FROM region ORDER BY createdDate ASC ")
+    @Query("SELECT nameEng FROM RegionEntity ORDER BY createdDate ASC ")
     List<String> findAllByNameEngOrderByCreatedDate();
 }

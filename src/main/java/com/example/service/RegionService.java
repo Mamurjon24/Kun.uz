@@ -81,8 +81,8 @@ public class RegionService {
         Page<RegionDTO> response = new PageImpl<RegionDTO>(dtoList, pageable, totalCount);
         return response;
     }
-    public Integer delete(Integer id) {
-        Integer num = regionRepository.changeRegionVisible(Boolean.FALSE,id );
+    public Integer delete(Integer adminId,Integer id) {
+        Integer num = regionRepository.changeRegionVisible(Boolean.FALSE,adminId,id );
         return num;
     }
 

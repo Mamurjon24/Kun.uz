@@ -12,22 +12,23 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.Optional;
 
-public interface ArticleRepository extends CrudRepository<ArticleEntity,Integer>, PagingAndSortingRepository<ArticleEntity, Integer> {
-    Optional<ArticleEntity> findAllByTitle(String title);
-    Optional<ArticleEntity> findById(String id);
+public interface ArticleRepository extends CrudRepository<ArticleEntity,String>, PagingAndSortingRepository<ArticleEntity, String> {
+    Optional<ArticleEntity> findByTitle(String title);
     @Transactional
     @Modifying
-    @Query("update article set visible = :visible, status = :status where id = :id")
-    Integer changeVisible(@Param("visible") Boolean visible, @Param("status") ArticleStatus status, @Param("id") String id);
+    @Query("update ArticleEntity set visible = :visible, status = :status,moderatorId = :moderatorId where id = :id")
+    Integer changeVisible(@Param("visible") Boolean visible, @Param("status") ArticleStatus status,@Param("moderatorId") Integer moderatorId, @Param("id") String id);
 
     @Transactional
     @Modifying
-    @Query("update article set visible = :visible, status = :status where id = :id")
+    @Query("update ArticleEntity set visible = :visible, status = :status where id = :id")
     Integer changeStatus(@Param("visible") Boolean visible, @Param("status") ArticleStatus status, @Param("id") String id);
 
-    @Query("FROM article WHERE articleType.id =:articleTypeId ORDER BY createdDate DESC limit 5")
+    @Query("FROM ArticleEntity WHERE type.id =:articleTypeId ORDER BY createdDate DESC limit 5")
     List<ArticleEntity> findLastFiveArticleByType(@Param("articleTypeId") Integer articleTypeId);
-    @Query("FROM article WHERE articleType.id =:articleTypeId ORDER BY createdDate DESC limit 3")
+    @Query("FROM ArticleEntity WHERE type.id =:articleTypeId ORDER BY createdDate DESC limit 3")
     List<ArticleEntity> findLastThreeArticleByType(@Param("articleTypeId") Integer articleTypeId);
+
+
 }
 

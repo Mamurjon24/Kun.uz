@@ -23,7 +23,6 @@ public class CategoryService {
     public CategoryDTO create(CategoryDTO dto, Integer id) {
         isValidProfile(dto);
         CategoryEntity entity = new CategoryEntity();
-        entity.setCreatedDate(LocalDateTime.now());
         entity.setVisible(dto.getVisible());
         entity.setNameUz(dto.getNameUz());
         entity.setNameRu(dto.getNameRu());
@@ -38,7 +37,7 @@ public class CategoryService {
     public void isValidProfile(CategoryDTO dto) {
         Optional<CategoryEntity> optional = categoryRepository.findByNameUzAndNameRuAndNameEng(dto.getNameUz(), dto.getNameRu(),dto.getNameEng());
         if (optional.isPresent()) {
-            throw new MethodNotAllowedExeption("This Name already use :)");
+            throw new MethodNotAllowedExeption("This Category Name already use :)");
         }
     }
 
@@ -83,8 +82,8 @@ public class CategoryService {
         Page<CategoryDTO> response = new PageImpl<CategoryDTO>(dtoList, pageable, totalCount);
         return response;
     }
-    public Integer delete(Integer id) {
-        Integer num = categoryRepository.changeRegionVisible(Boolean.FALSE,id );
+    public Integer delete(Integer adminId,Integer id) {
+        Integer num = categoryRepository.changeRegionVisible(Boolean.FALSE,adminId,id );
         return num;
     }
 

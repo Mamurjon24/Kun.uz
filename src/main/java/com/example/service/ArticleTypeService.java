@@ -22,7 +22,6 @@ public class ArticleTypeService {
     public ArticleTypeDTO create(ArticleTypeDTO dto, Integer id) {
         isValidProfile(dto);
         ArticleTypeEntity entity = new ArticleTypeEntity();
-        entity.setCreatedDate(LocalDateTime.now());
         entity.setVisible(dto.getVisible());
         entity.setNameUz(dto.getNameUz());
         entity.setNameRu(dto.getNameRu());
@@ -37,7 +36,7 @@ public class ArticleTypeService {
     public void isValidProfile(ArticleTypeDTO dto) {
         Optional<ArticleTypeEntity> optional = articleTypeRepository.findByNameUzAndNameRuAndNameEng(dto.getNameUz(), dto.getNameRu(),dto.getNameEng());
         if (optional.isPresent()) {
-            throw new MethodNotAllowedExeption("This Name already use :)");
+            throw new MethodNotAllowedExeption("This ArticleType Name already use :)");
         }
     }
 
@@ -82,8 +81,8 @@ public class ArticleTypeService {
         Page<ArticleTypeDTO> response = new PageImpl<ArticleTypeDTO>(dtoList, pageable, totalCount);
         return response;
     }
-    public Integer delete(Integer id) {
-        Integer num = articleTypeRepository.changeArticleVisible(Boolean.FALSE,id );
+    public Integer delete(Integer adminId,Integer id) {
+        Integer num = articleTypeRepository.changeArticleVisible(Boolean.FALSE,adminId,id );
         return num;
     }
 

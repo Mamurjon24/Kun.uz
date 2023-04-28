@@ -8,7 +8,8 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Entity(name="article_type")
+@Table(name="article_type")
+@Entity()
 public class ArticleTypeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

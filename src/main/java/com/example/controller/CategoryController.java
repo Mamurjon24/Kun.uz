@@ -44,8 +44,8 @@ public class CategoryController {
     @PutMapping(value = "/delete/{id}")
     public ResponseEntity<?> delete(@RequestHeader("Authorization") String authorization,
                                     @PathVariable("id") Integer id) {
-        JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
-        return ResponseEntity.ok(categoryService.delete(id));
+        JwtDTO jwtDTO = JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
+        return ResponseEntity.ok(categoryService.delete(jwtDTO.getId(),id));
     }
 
     @PutMapping(value = "/getByLang/{lang}")

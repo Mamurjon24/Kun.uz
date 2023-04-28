@@ -9,8 +9,8 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 @Getter
 @Setter
-@Table
-@Entity(name ="profile")
+@Table(name ="profile")
+@Entity
 public class ProfileEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,5 +39,9 @@ public class ProfileEntity {
     private LocalDateTime updatedDate;
     @Column(name = "prt_id")
     private Integer prtId;
-    // photo_id
+    @Column(name = "attach_id")
+    private String photoId;
+    @OneToOne
+    @JoinColumn(name = "attach_id", insertable = false, updatable = false)
+    private AttachEntity photo;
 }

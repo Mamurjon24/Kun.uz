@@ -138,7 +138,7 @@ public class AttachService {
     }
     public AttachEntity get(String id) {
         return attachRepository.findById(id).orElseThrow(() -> {
-            throw new ItemNotFoundException("Attach not ound");
+            throw new ItemNotFoundException("Attach not found");
         });
     }
     public String getYmDString() {

@@ -1,13 +1,12 @@
 package com.example.dto.profile;
 
-import com.example.enums.GeneralStatus;
 import com.example.enums.ProfileRole;
 import lombok.Data;
 
 import java.time.LocalDate;
 
 @Data
-public class ProfileRequestcustomDTO {
+public class ProfileRequestCustomDTO {
     private String name;
     private String surname;
     private String email;
