@@ -1,6 +1,6 @@
 ### Create Article
 POST localhost:8080/api/v1/articleType/
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODE5MDk1MjcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODE5OTU5MjcsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.NajD-X4FaRzEwPEs00Y9MZ_HkMC6gkfy4YZkJ2Hw_3SEZn0R4OVFD6QKcYpbi9P4pBal1zxC8bDIemjEdFzMSg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI3NDk3MjYsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODI4MzYxMjYsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.Lf0IGwyvBxSXEoXhteUrYjziUH2jYiYoX0lw5y--rpQqrHVwWBDTNxu_wS-h2QmeiFORyUhgkEQWyLmpD6cEZA
 Content-Type:  application/json
 
 //{
@@ -29,28 +29,28 @@ Content-Type:  application/json
 }
 ### Update profil
 PUT localhost:8080/api/v1/articleType/update
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIwODY0MjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODIxNzI4MjgsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.1M95AXImNj91615YCGyvIBZtdHXV_9hgC5RBA-ScctkNrMHzeZzJPIWdaH9MZfDJ0hwUZwWN7eZcjLi1ZliDIQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI3NDk3MjYsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODI4MzYxMjYsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.Lf0IGwyvBxSXEoXhteUrYjziUH2jYiYoX0lw5y--rpQqrHVwWBDTNxu_wS-h2QmeiFORyUhgkEQWyLmpD6cEZA
 Content-Type:  application/json
 
 {
-  "id" : 2,
-  "nameUz": "Maqola №2",
-  "nameRu": "Статя №2",
-  "nameEng": "Article №2",
+  "id" : 4,
+  "nameUz": "Maqola №5",
+  "nameRu": "Статия №5",
+  "nameEng": "Article №5",
   "visible": true
 }
 
 ### List profil
-PUT localhost:8080/api/v1/articleType/delete/2
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIwODY0MjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODIxNzI4MjgsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.1M95AXImNj91615YCGyvIBZtdHXV_9hgC5RBA-ScctkNrMHzeZzJPIWdaH9MZfDJ0hwUZwWN7eZcjLi1ZliDIQ
+PUT localhost:8080/api/v1/articleType/delete/4
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI3NDk3MjYsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODI4MzYxMjYsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.Lf0IGwyvBxSXEoXhteUrYjziUH2jYiYoX0lw5y--rpQqrHVwWBDTNxu_wS-h2QmeiFORyUhgkEQWyLmpD6cEZA
 Content-Type:  application/json
 
 ### Paging profil
 PUT localhost:8080/api/v1/articleType/paging
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIwODY0MjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODIxNzI4MjgsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.1M95AXImNj91615YCGyvIBZtdHXV_9hgC5RBA-ScctkNrMHzeZzJPIWdaH9MZfDJ0hwUZwWN7eZcjLi1ZliDIQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI3NDk3MjYsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODI4MzYxMjYsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.Lf0IGwyvBxSXEoXhteUrYjziUH2jYiYoX0lw5y--rpQqrHVwWBDTNxu_wS-h2QmeiFORyUhgkEQWyLmpD6cEZA
 Content-Type:  application/json
 
 ### GetByLang profil
-PUT localhost:8080/api/v1/articleType/getByLang/Eng
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIwODY0MjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODIxNzI4MjgsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.1M95AXImNj91615YCGyvIBZtdHXV_9hgC5RBA-ScctkNrMHzeZzJPIWdaH9MZfDJ0hwUZwWN7eZcjLi1ZliDIQ
+PUT localhost:8080/api/v1/articleType/getByLang/Ru
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI3NDk3MjYsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODI4MzYxMjYsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.Lf0IGwyvBxSXEoXhteUrYjziUH2jYiYoX0lw5y--rpQqrHVwWBDTNxu_wS-h2QmeiFORyUhgkEQWyLmpD6cEZA
 Content-Type:  application/json

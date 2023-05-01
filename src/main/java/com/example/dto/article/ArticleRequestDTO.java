@@ -21,11 +21,12 @@ public class ArticleRequestDTO {
     @NotEmpty(message = "Content qani")
     private String content;
     @NotEmpty(message = "Photo qani")
-    private Integer attachId;
-    @NotEmpty(message = "Region qani")
+    private String photoId;
+    @NotNull(message = "Region qani")
     private Integer regionId;
-    @NotEmpty(message = "Category qani")
+    @NotNull(message = "Category qani")
     private Integer categoryId;
-    @NotEmpty(message = "Should provide value")
+    @NotNull(message = "Should provide value")
     private Integer typeId;
+
 }

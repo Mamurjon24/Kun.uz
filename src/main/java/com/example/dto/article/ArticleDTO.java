@@ -23,6 +23,7 @@ public class ArticleDTO {
     private Integer categoryId;
     private Integer moderatorId;
     private Integer publisherId;
+    private String photoId;
     private ArticleStatus status;
     private LocalDateTime createdDate;
     private LocalDateTime publishedDate;

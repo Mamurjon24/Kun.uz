@@ -21,7 +21,6 @@ public class RegionService {
     public RegionDTO create(RegionDTO dto, Integer id) {
         isValidProfile(dto);
         RegionEntity entity = new RegionEntity();
-        entity.setCreatedDate(LocalDateTime.now());
         entity.setVisible(dto.getVisible());
         entity.setNameUz(dto.getNameUz());
         entity.setNameRu(dto.getNameRu());

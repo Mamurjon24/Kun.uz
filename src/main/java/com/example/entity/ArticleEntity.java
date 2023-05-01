@@ -24,7 +24,7 @@ public class ArticleEntity {
     @Column(name = "content", columnDefinition = "TEXT")
     private String content;
     @Column(name = "shared_count")
-    private Integer sharedCount;
+    private Integer sharedCount = 0;
     @Column(name = "region_id")
     private Integer regionId;
     @ManyToOne
@@ -45,11 +45,11 @@ public class ArticleEntity {
     @ManyToOne
     @JoinColumn(name = "publisher_id", insertable = false, updatable = false)
     private ProfileEntity publisher;
-    @Column(name = "attach_id")
-    private Integer attachId;
+    @Column(name = "photo_id")
+    private String photoId;
     @ManyToOne
-    @JoinColumn(name = "attach_id", insertable = false, updatable = false)
-    private AttachEntity attach;
+    @JoinColumn(name = "photo_id", insertable = false, updatable = false)
+    private AttachEntity photo;
     @Column(name = "articleType_id")
     private Integer typeId;
     @ManyToOne
@@ -65,6 +65,16 @@ public class ArticleEntity {
     @Column(name = "visible")
     private Boolean visible = Boolean.TRUE;
     @Column(name = "view_count")
-    private Integer viewCount;
+    private Integer viewCount = 0;
 
+    public ArticleEntity() {
+    }
+
+    public ArticleEntity(String id, String title, String description, String photoId, LocalDateTime publishedDate) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.photoId = photoId;
+        this.publishedDate = publishedDate;
+    }
 }

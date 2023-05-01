@@ -1,86 +1,104 @@
 ### Create Article
 POST localhost:8080/api/v1/article
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI1MTQ0MTUsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODI2MDA4MTUsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.of--AMIcJrFjHQNNfARYeXjnO5Tssh7LaqFeZN-v_xsyeRVFsx6c6Qfq5SdoLwYumf5gTdXs2ipetEasaCpIJg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI5MjY4NDcsImlkIjozLCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNjgzMDEzMjQ4LCJpc3MiOiJLdW51eiB0ZXN0IHBvcnRhbGkifQ.6s_S2HLO1Vlab505WhpY56xgIJhZ0YQcMB0dcNYRyJ6v1-Ln1I1JtFcHZukDzItqQwCUd12GL7HFDBui2vs9gg
 Content-Type:  application/json
 
 //{
 //  "title": "Nimadir",
 //  "description": "Qisqacha Nimadir",
 //  "content": "Bir bor ekan bir yoq ekan",
-//  "sharedCount": 5,
-//  "categoryId": 3,
-//  "regionId": 3,
-//  "moderatorId": 3,
-//  "articleTypeId": 1
+//  "regionId": 1,
+//  "categoryId": 2,
+//  "typeId": 1
+//}
+//{
+//  "title": "Nimadir1",
+//  "description": "Qisqacha Nimadir1",
+//  "content": "Bir bor ekan bir yoq ekan1",
+//  "regionId": 1,
+//  "categoryId": 2,
+//  "typeId": 1
 //}
 //{
 //  "title": "Nimadir2",
 //  "description": "Qisqacha Nimadir2",
 //  "content": "Bir bor ekan bir yoq ekan2",
-//  "sharedCount": 6,
+//  "regionId": 2,
 //  "categoryId": 1,
-//  "regionId": 1,
-//  "moderatorId": 3,
-//  "articleTypeId": 1
+//  "typeId": 2
 //}
 //{
 //  "title": "Nimadir3",
 //  "description": "Qisqacha Nimadir3",
 //  "content": "Bir bor ekan bir yoq ekan3",
-//  "sharedCount": 2,
-//  "categoryId": 4,
-//  "regionId": 4,
-//  "moderatorId": 3,
-//  "articleTypeId": 1
+//  "regionId": 3,
+//  "categoryId": 3,
+//  "typeId": 3
 //}
 //{
-//  "title": "Nimadir6",
-//  "description": "Qisqacha Nimadir6",
-//  "content": "Bir bor ekan bir yoq ekan6",
-//  "sharedCount": 6,
-//  "categoryId": 2,
+//  "title": "Nimadir4",
+//  "description": "Qisqacha Nimadir4",
+//  "content": "Bir bor ekan bir yoq ekan4",
+//  "regionId": 3,
+//  "categoryId": 3,
+//  "typeId": 3
+//}
+//{
+//  "title": "Nimadir5",
+//  "description": "Qisqacha Nimadir5",
+//  "content": "Bir bor ekan bir yoq ekan5",
 //  "regionId": 2,
-//  "moderatorId": 2,
-//  "articleTypeId": 1
+//  "categoryId": 2,
+//  "typeId": 2
 //}
 {
-  "title": "Nimadir5",
-  "description": "Qisqacha Nimadir5",
-  "content": "Bir bor ekan bir yoq ekan5",
-  "sharedCount": 6,
-  "categoryId": 1,
+  "title": "Nimadir8",
+  "description": "Qisqacha Nimadir8",
+  "content": "Bir bor ekan bir yoq ekan8",
   "regionId": 1,
-  "articleTypeId": 1,
-  "moderatorId": 3
+  "categoryId": 1,
+  "typeId": 1,
+  "photoId" : "92475d3e-1dfb-4bdf-8704-e090aed2db99"
 }
+
 ### Update Article
 PUT localhost:8080/api/v1/article/update
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIzMzQ3MzcsImlkIjozLCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNjgyNDIxMTM3LCJpc3MiOiJLdW51eiB0ZXN0IHBvcnRhbGkifQ.A9DD61d8EYsuNuOQ7bbhW0HPiwJeS6sOXbSHkJLEC6MaIBruMDz23BK5A5lJylstGgV30DTA2O5qOTTiav3FOQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI3NTMwMDksImlkIjozLCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNjgyODM5NDA5LCJpc3MiOiJLdW51eiB0ZXN0IHBvcnRhbGkifQ.L2wRNR238NhOhZqddbZgKPNh_fdyYX1GX2JtdMpMC2ULjNu21LHb0X1l42y_aHi0kJ4oujbrdE8C7wBCrpxyBA
 Content-Type:  application/json
 
 {
-  "id": "67c59e28-dc54-4f08-af65-88eb2387dcc3",
-  "title": "Allanima6",
-  "description": "Qisqacha Allanima6",
-  "content": "Bir bor ekan bir yoq ekan6",
-  "sharedCount": 6,
+  "id" : "fa43203a-125e-4a9d-ab21-78de2743dd1e",
+  "title": "Allanima",
+  "description": "Qisqacha Allanima",
+  "content": "Bir bor ekan bir yoq ekanda",
+  "regionId": 1,
   "categoryId": 2,
-  "regionId": 2,
-  "moderatorId": 2,
-  "articleTypeId": 1
+  "typeId": 3
 }
 ### ChangeStatus Article
-PUT localhost:8080/api/v1/article/changeStatus/67c59e28-dc54-4f08-af65-88eb2387dcc3
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIzMzUxMjgsImlkIjo0LCJyb2xlIjoiUFVCTElTSEVSIiwiZXhwIjoxNjgyNDIxNTI4LCJpc3MiOiJLdW51eiB0ZXN0IHBvcnRhbGkifQ.V9iCZXcv79xPghKxcLeU7UQO0GITm-dYNtmEFh6DHiA6Uj_YfWbbi7ytDDovkkL_vFu-k_lKuWnRmEFXXPzzfg
+PUT localhost:8080/api/v1/article/changeStatus/91849840-b6dd-4a58-803a-bc3d336f659f
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI3NTY5MDgsImlkIjo1LCJyb2xlIjoiUFVCTElTSEVSIiwiZXhwIjoxNjgyODQzMzA4LCJpc3MiOiJLdW51eiB0ZXN0IHBvcnRhbGkifQ.x9gCCPzOflthrgfxHqnSaqbl10hnzhXa-oYguJCJOOb2ugS9WaYPpMITO7a4hJlyXdvrfMxvjHqg6bLmcTYuEQ
 Content-Type:  application/json
 
 ### Delete Article
-PUT localhost:8080/api/v1/article/delete/a0783608-31c6-4418-af76-e6f84227d9db
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIyMjY1NDQsImlkIjozLCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNjgyMzEyOTQ0LCJpc3MiOiJLdW51eiB0ZXN0IHBvcnRhbGkifQ._pul_BM6Sc8cEcmXl4oF6ZRNCXakw5k8KRm__o0g8JFst2H3nZkl9XUJ3jZZ7FQGJYsElVHbSNgje1RczdyF4g
+PUT localhost:8080/api/v1/article/delete/5ab5ca0f-c660-48ad-8cf6-850c84915a69
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI3NTMwMDksImlkIjozLCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNjgyODM5NDA5LCJpc3MiOiJLdW51eiB0ZXN0IHBvcnRhbGkifQ.L2wRNR238NhOhZqddbZgKPNh_fdyYX1GX2JtdMpMC2ULjNu21LHb0X1l42y_aHi0kJ4oujbrdE8C7wBCrpxyBA
 Content-Type:  application/json
 
 ### Get 5 Article
-GET localhost:8080/api/v1/article/getLastFiveArticleByType/1
+GET localhost:8080/api/v1/article/getLastFiveArticleByType/5
 
 ### Get 3 Article
-GET localhost:8080/api/v1/article/getLastThreeArticleByType/1
+GET localhost:8080/api/v1/article/getLastThreeArticleByType/3
+
+### Get GetArticlesNotInList
+GET localhost:8080/api/v1/article/getArticlesNotInList?idList=9d9375a0-e00f-47a9-8692-bd80456d7ac2&idList=9d9375a0-e00f-47a9-8692-bd80456d7ac2&idList=fa43203a-125e-4a9d-ab21-78de2743dd1e
+
+### GetLast4ArticleByTypes
+PUT localhost:8080/api/v1/article/getLast4ArticleByTypes/1
+Content-Type:  application/json
+
+{
+"articleIdList": ["9d9375a0-e00f-47a9-8692-bd80456d7ac2","5ab5ca0f-c660-48ad-8cf6-850c84915a69"]
+}
+

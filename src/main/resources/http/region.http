@@ -1,6 +1,6 @@
 ### Create Region
 POST localhost:8080/api/v1/region
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIwODY0MjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODIxNzI4MjgsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.1M95AXImNj91615YCGyvIBZtdHXV_9hgC5RBA-ScctkNrMHzeZzJPIWdaH9MZfDJ0hwUZwWN7eZcjLi1ZliDIQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI3NDk3MjYsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODI4MzYxMjYsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.Lf0IGwyvBxSXEoXhteUrYjziUH2jYiYoX0lw5y--rpQqrHVwWBDTNxu_wS-h2QmeiFORyUhgkEQWyLmpD6cEZA
 Content-Type:  application/json
 
 //{
@@ -29,11 +29,11 @@ Content-Type:  application/json
 }
 ### Update Region
 PUT localhost:8080/api/v1/region/update
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIwODY0MjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODIxNzI4MjgsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.1M95AXImNj91615YCGyvIBZtdHXV_9hgC5RBA-ScctkNrMHzeZzJPIWdaH9MZfDJ0hwUZwWN7eZcjLi1ZliDIQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI3NDk3MjYsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODI4MzYxMjYsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.Lf0IGwyvBxSXEoXhteUrYjziUH2jYiYoX0lw5y--rpQqrHVwWBDTNxu_wS-h2QmeiFORyUhgkEQWyLmpD6cEZA
 Content-Type:  application/json
 
 {
-  "id" : 2,
+  "id" : 4,
   "nameUz": "Andijon",
   "nameRu": "Андижан",
   "nameEng": "Andijhan",
@@ -41,16 +41,16 @@ Content-Type:  application/json
 }
 
 ### List Region
-PUT localhost:8080/api/v1/region/delete/2
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIwODY0MjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODIxNzI4MjgsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.1M95AXImNj91615YCGyvIBZtdHXV_9hgC5RBA-ScctkNrMHzeZzJPIWdaH9MZfDJ0hwUZwWN7eZcjLi1ZliDIQ
+PUT localhost:8080/api/v1/region/delete/4
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI3NDk3MjYsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODI4MzYxMjYsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.Lf0IGwyvBxSXEoXhteUrYjziUH2jYiYoX0lw5y--rpQqrHVwWBDTNxu_wS-h2QmeiFORyUhgkEQWyLmpD6cEZA
 Content-Type:  application/json
 
 ### Paging Region
 PUT localhost:8080/api/v1/region/paging
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIwODY0MjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODIxNzI4MjgsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.1M95AXImNj91615YCGyvIBZtdHXV_9hgC5RBA-ScctkNrMHzeZzJPIWdaH9MZfDJ0hwUZwWN7eZcjLi1ZliDIQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI3NDk3MjYsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODI4MzYxMjYsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.Lf0IGwyvBxSXEoXhteUrYjziUH2jYiYoX0lw5y--rpQqrHVwWBDTNxu_wS-h2QmeiFORyUhgkEQWyLmpD6cEZA
 Content-Type:  application/json
 
 ### GetByLang Region
 PUT localhost:8080/api/v1/region/getByLang/Eng
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODIwODY0MjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODIxNzI4MjgsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.1M95AXImNj91615YCGyvIBZtdHXV_9hgC5RBA-ScctkNrMHzeZzJPIWdaH9MZfDJ0hwUZwWN7eZcjLi1ZliDIQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI3NDk3MjYsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODI4MzYxMjYsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.Lf0IGwyvBxSXEoXhteUrYjziUH2jYiYoX0lw5y--rpQqrHVwWBDTNxu_wS-h2QmeiFORyUhgkEQWyLmpD6cEZA
 Content-Type:  application/json

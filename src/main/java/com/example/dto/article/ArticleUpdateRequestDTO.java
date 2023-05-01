@@ -20,7 +20,7 @@ public class ArticleUpdateRequestDTO {
     @NotEmpty(message = "Content qani")
     private String content;
     @NotEmpty(message = "Photo qani")
-    private Integer attachId;
+    private String photoId;
     @NotEmpty(message = "Region qani")
     private Integer regionId;
     @NotEmpty(message = "Category qani")

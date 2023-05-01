@@ -3,12 +3,30 @@ POST http://localhost:8080/api/v1/attach/upload
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary
-Content-Disposition: form-data; name="file"; filename="Screenshot (10).png"
+Content-Disposition: form-data; name="file"; filename="737753.jpg"
 
-< C:\Users\Mamurjon\Pictures\Screenshots\Screenshot (10).png
+< C:\Users\Mamurjon\Downloads\737753.jpg
+
+###upload
+POST http://localhost:8080/api/v1/attach/upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="737757.jpg"
+
+< C:\Users\Mamurjon\Downloads\737757.jpg
+
+###upload
+POST http://localhost:8080/api/v1/attach/upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="399717.jpg"
+
+< C:\Users\Mamurjon\Downloads\399717.jpg
 
 ### video
-POST http://192.168.0.146:8080/api/v1/attach/upload
+POST http://localhost:8080/api/v1/attach/upload
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary

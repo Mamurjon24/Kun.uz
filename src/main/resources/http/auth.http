@@ -3,7 +3,7 @@ POST localhost:8080/api/v1/auth
 Content-Type:  application/json
 
 {
-  "email": "ali@mail.ru",
+  "email": "ali@mail.com",
   "password": "2"
 }
 
@@ -68,8 +68,8 @@ POST localhost:8080/api/v1/auth
 Content-Type:  application/json
 
 {
-  "email": "vali@mail.com",
-  "password": "3"
+  "email": "mamat@mail.ru",
+  "password": "5"
 }
 
 ### Login
@@ -77,8 +77,8 @@ POST localhost:8080/api/v1/auth
 Content-Type:  application/json
 
 {
-  "email": "toshmat@mail.ru",
-  "password": "4"
+  "email": "vali@mail.com",
+  "password": "3"
 }
 
 ### Verification

@@ -1,0 +1,34 @@
+### Create Tag
+POST localhost:8080/api/v1/tag
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI5NTU5NjcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODMwNDIzNjcsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.Yf2Scma-q_WfX-xvebdDEhQOlKWVtsah9VklMNHqfSoB72znL_xM-7DILN5msKlFl8EaDRhMV9lHarzzMtFpzQ
+Content-Type:  application/json
+
+//{
+//  "name": "#muximemas"
+//}
+//{
+//  "name": "#sloshkommuxim"
+//}
+//{
+//  "name": "#tag1"
+//}
+
+### Update Tag
+POST localhost:8080/api/v1/tag/update
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI5NTU5NjcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODMwNDIzNjcsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.Yf2Scma-q_WfX-xvebdDEhQOlKWVtsah9VklMNHqfSoB72znL_xM-7DILN5msKlFl8EaDRhMV9lHarzzMtFpzQ
+Content-Type:  application/json
+
+{
+  "id": 1,
+  "name": "#muxim"
+}
+
+### Delete Tag
+POST localhost:8080/api/v1/tag/delete/2
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI5NTU5NjcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODMwNDIzNjcsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.Yf2Scma-q_WfX-xvebdDEhQOlKWVtsah9VklMNHqfSoB72znL_xM-7DILN5msKlFl8EaDRhMV9lHarzzMtFpzQ
+Content-Type:  application/json
+
+### Delete Tag
+POST localhost:8080/api/v1/tag/getList
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI5NTU5NjcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODMwNDIzNjcsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.Yf2Scma-q_WfX-xvebdDEhQOlKWVtsah9VklMNHqfSoB72znL_xM-7DILN5msKlFl8EaDRhMV9lHarzzMtFpzQ
+Content-Type:  application/json
