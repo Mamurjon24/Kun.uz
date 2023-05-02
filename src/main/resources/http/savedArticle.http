@@ -1,0 +1,25 @@
+### Create Comment
+POST localhost:8080/api/v1/savedArticle
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODMwMTE2MDksImlkIjo2LCJyb2xlIjoiVVNFUiIsImV4cCI6MTY4MzA5ODAwOSwiaXNzIjoiS3VudXogdGVzdCBwb3J0YWxpIn0.6WZ_9io8X-_UXHTLiNj30BoGUbRChf_JgUTL5oFSypPJ2Ovj3Vv001I79SZJuxJphbajgUNOMMWmdPDkpZUpHQ
+Content-Type:  application/json
+
+//{
+//"articleId": "fa43203a-125e-4a9d-ab21-78de2743dd1e"
+//}
+//{
+//  "articleId": "5ab5ca0f-c660-48ad-8cf6-850c84915a69"
+//}
+{
+  "articleId": "9d9375a0-e00f-47a9-8692-bd80456d7ac2"
+}
+
+### Delete Comment
+POST localhost:8080/api/v1/savedArticle/delete/1
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODMwMTE2MDksImlkIjo2LCJyb2xlIjoiVVNFUiIsImV4cCI6MTY4MzA5ODAwOSwiaXNzIjoiS3VudXogdGVzdCBwb3J0YWxpIn0.6WZ_9io8X-_UXHTLiNj30BoGUbRChf_JgUTL5oFSypPJ2Ovj3Vv001I79SZJuxJphbajgUNOMMWmdPDkpZUpHQ
+Content-Type:  application/json
+
+
+### List Comment
+POST localhost:8080/api/v1/savedArticle/getList
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODMwMTgwOTMsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODMxMDQ0OTMsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.KZiOTyiuVyp-tTq8irQIi0X_qxVW5S-o-Alg38FaFSs9Gu-BoC5cRdOhFiCusp1xlkCcY5_EwYCDMmXutNlDMg
+Content-Type:  application/json

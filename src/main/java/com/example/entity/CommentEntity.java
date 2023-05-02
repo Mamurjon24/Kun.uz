@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Table(name = "Comment")
+@Table(name = "comment")
 @Entity
 public class CommentEntity {
     @Id
@@ -20,7 +20,7 @@ public class CommentEntity {
     @JoinColumn(name = "profile_id", insertable = false, updatable = false)
     private ProfileEntity profile;
     @Column(name = "article_id")
-    private Integer articleId;
+    private String articleId;
     @ManyToOne
     @JoinColumn(name = "article_id", insertable = false, updatable = false)
     private ArticleEntity article;

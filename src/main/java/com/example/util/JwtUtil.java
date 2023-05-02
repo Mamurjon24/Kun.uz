@@ -81,6 +81,7 @@ public class JwtUtil {
         }
         return jwtDTO;
     }
+
     public static JwtDTO getJwtDTOForArticle(String authorization, ProfileRole... roleList) {
         String[] str = authorization.split(" ");
         String jwt = str[1];

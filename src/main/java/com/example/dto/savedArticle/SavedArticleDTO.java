@@ -10,9 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class SavedArticleDTO {
     private Integer id;
-    @NonNull()
     private Integer profileId;
-    @NotBlank(message = "Enter Article Id")
     private String articleId;
     private LocalDateTime created_date;
 }

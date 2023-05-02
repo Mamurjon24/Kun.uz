@@ -15,10 +15,10 @@ public class CommentDTO {
     private Integer id;
     private Integer profileId;
     private String articleId;
-    private LocalDateTime createdDate;
-    private LocalDateTime updateDate;
     private String content;
     private Boolean visible;
+    private LocalDateTime createdDate;
+    private LocalDateTime updateDate;
 
     //reply_id
 }

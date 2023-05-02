@@ -1,0 +1,43 @@
+### Create Comment
+POST localhost:8080/api/v1/comment
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODMwMTE2MDksImlkIjo2LCJyb2xlIjoiVVNFUiIsImV4cCI6MTY4MzA5ODAwOSwiaXNzIjoiS3VudXogdGVzdCBwb3J0YWxpIn0.6WZ_9io8X-_UXHTLiNj30BoGUbRChf_JgUTL5oFSypPJ2Ovj3Vv001I79SZJuxJphbajgUNOMMWmdPDkpZUpHQ
+Content-Type:  application/json
+
+//{
+//"content": "Zo'r ekan",
+//"articleId": "91849840-b6dd-4a58-803a-bc3d336f659f"
+//}
+//{
+//  "content": "norm",
+//  "articleId": "d4ee85ae-9880-4017-9ba4-a03d6bfd8994"
+//}
+//{
+//  "content": "yomon",
+//  "articleId": "4fe1dda1-dbc7-4aa9-a6bd-e568a13b4e12"
+//}
+{
+  "content": "yoge",
+  "articleId": "283be4d3-4be9-410a-84df-4325a357e5ce"
+}
+
+### Update Comment
+POST localhost:8080/api/v1/comment/update
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODMwMTE2MDksImlkIjo2LCJyb2xlIjoiVVNFUiIsImV4cCI6MTY4MzA5ODAwOSwiaXNzIjoiS3VudXogdGVzdCBwb3J0YWxpIn0.6WZ_9io8X-_UXHTLiNj30BoGUbRChf_JgUTL5oFSypPJ2Ovj3Vv001I79SZJuxJphbajgUNOMMWmdPDkpZUpHQ
+Content-Type:  application/json
+
+{
+  "id": 4,
+  "content": "Bulishi mumkin emas",
+  "articleId": "283be4d3-4be9-410a-84df-4325a357e5ce"
+}
+
+### Delete Comment
+POST localhost:8080/api/v1/comment/delete/2
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODMwMTE2MDksImlkIjo2LCJyb2xlIjoiVVNFUiIsImV4cCI6MTY4MzA5ODAwOSwiaXNzIjoiS3VudXogdGVzdCBwb3J0YWxpIn0.6WZ_9io8X-_UXHTLiNj30BoGUbRChf_JgUTL5oFSypPJ2Ovj3Vv001I79SZJuxJphbajgUNOMMWmdPDkpZUpHQ
+Content-Type:  application/json
+
+### List Comment
+POST localhost:8080/api/v1/comment/getList/91849840-b6dd-4a58-803a-bc3d336f659f
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODMwMTgwOTMsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODMxMDQ0OTMsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.KZiOTyiuVyp-tTq8irQIi0X_qxVW5S-o-Alg38FaFSs9Gu-BoC5cRdOhFiCusp1xlkCcY5_EwYCDMmXutNlDMg
+Content-Type:  application/json
+

@@ -26,14 +26,14 @@ public class ArticleController {
     @PostMapping({"", "/"})
     public ResponseEntity<ArticleRequestDTO> create(@RequestBody @Valid ArticleRequestDTO dto,
                                                     @RequestHeader("Authorization") String authorization) {
-        JwtDTO jwt = JwtUtil.getJwtDTO(authorization, ProfileRole.MODERATOR,ProfileRole.ADMIN);
+        JwtDTO jwt = JwtUtil.getJwtDTO(authorization, ProfileRole.MODERATOR, ProfileRole.ADMIN);
         return ResponseEntity.ok(articleService.create(dto, jwt.getId()));
     }
 
     @PutMapping(value = "/update")
     public ResponseEntity<?> update(@RequestBody ArticleUpdateRequestDTO dto,
                                     @RequestHeader("Authorization") String authorization) {
-        JwtDTO jwt = JwtUtil.getJwtDTO(authorization, ProfileRole.MODERATOR,ProfileRole.ADMIN);
+        JwtDTO jwt = JwtUtil.getJwtDTO(authorization, ProfileRole.MODERATOR, ProfileRole.ADMIN);
         return ResponseEntity.ok(articleService.update(dto, jwt.getId()));
     }
 
@@ -76,7 +76,6 @@ public class ArticleController {
         List<ArticleShortInfoDTO> articleList = articleService.findLast4ArticleByTypes(articleIdList, articleId);
         return ResponseEntity.ok(articleList);
     }
-
 
 
 }

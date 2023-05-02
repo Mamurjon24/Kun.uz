@@ -33,11 +33,11 @@ POST localhost:8080/api/v1/auth/register
 Content-Type:  application/json
 
 {
-  "name": "Admin",
-  "surname": "Adminov",
-  "phone": "1",
-  "email": "admin@gmail.com",
-  "password": "1"
+  "name": "User",
+  "surname": "User",
+  "phone": "6",
+  "email": "user@gmail.com",
+  "password": "6"
 }
 
 ### Registration
@@ -79,6 +79,15 @@ Content-Type:  application/json
 {
   "email": "vali@mail.com",
   "password": "3"
+}
+
+### Login
+POST localhost:8080/api/v1/auth
+Content-Type:  application/json
+
+{
+  "email": "user@gmail.com",
+  "password": "6"
 }
 
 ### Verification

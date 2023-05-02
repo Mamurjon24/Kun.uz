@@ -10,9 +10,9 @@ import java.time.LocalDateTime;
 @Setter
 @Table(name = "saved_article")
 @Entity
-public class SavedEntity {
+public class SavedArticleEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "profile_id")
     private Integer profileId;
@@ -20,11 +20,10 @@ public class SavedEntity {
     @JoinColumn(name = "profile_id", insertable = false, updatable = false)
     private ProfileEntity profile;
     @Column(name = "article_id")
-    private Integer articleId;
+    private String articleId;
     @ManyToOne
     @JoinColumn(name = "article_id", insertable = false, updatable = false)
     private ArticleEntity article;
     @Column(name = "created_date")
     private LocalDateTime createdDate = LocalDateTime.now();
-
 }
