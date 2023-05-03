@@ -4,6 +4,7 @@ import com.example.dto.category.CategoryDTO;
 import com.example.dto.profile.ProfileDTO;
 import com.example.entity.CategoryEntity;
 import com.example.entity.ProfileEntity;
+import com.example.enums.LangEnum;
 import com.example.exp.AppBadRequestException;
 import com.example.exp.MethodNotAllowedExeption;
 import com.example.repository.CategoryRepository;
@@ -101,6 +102,22 @@ public class CategoryService {
         }
         return null;
     }
-
+    public CategoryDTO getByIdAndLang(Integer id, LangEnum lang) {
+        CategoryEntity entity = get(id);
+        CategoryDTO dto = new CategoryDTO();
+        dto.setId(entity.getId());
+        switch (lang) {
+            case ENG -> {
+                dto.setName(entity.getNameEng());
+            }
+            case RU -> {
+                dto.setName(entity.getNameRu());
+            }
+            case UZ -> {
+                dto.setName(entity.getNameUz());
+            }
+        }
+        return dto;
+    }
 
 }

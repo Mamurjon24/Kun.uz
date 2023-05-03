@@ -9,6 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface CommentRepository extends CrudRepository<CommentEntity, Integer>, PagingAndSortingRepository<CommentEntity, Integer>{
@@ -23,6 +24,6 @@ public interface CommentRepository extends CrudRepository<CommentEntity, Integer
     @Query("select c from CommentEntity as c where c.article.id = :articleId and c.profile.id = :profileId")
     CommentEntity findByIdAndProfileId( @Param("articleId") String articleId,@Param("profileId") Integer profileId);
     @Query("select new com.example.mapper.ArticleCommentMapper(c.id,c.createdDate,c.updatedDate,c.profile.id,c.profile.name,c.profile.surname) from CommentEntity as c where c.article.id = :articleId")
-    ArticleCommentMapper findByArticleId(@Param("articleId") String articleId);
+    List<ArticleCommentMapper> findByArticleId(@Param("articleId") String articleId);
 
 }

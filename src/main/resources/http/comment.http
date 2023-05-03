@@ -38,6 +38,6 @@ Content-Type:  application/json
 
 ### List Comment
 POST localhost:8080/api/v1/comment/getList/91849840-b6dd-4a58-803a-bc3d336f659f
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODMwMTgwOTMsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODMxMDQ0OTMsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.KZiOTyiuVyp-tTq8irQIi0X_qxVW5S-o-Alg38FaFSs9Gu-BoC5cRdOhFiCusp1xlkCcY5_EwYCDMmXutNlDMg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODMwOTUzOTYsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODMxODE3OTYsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.I3F68pMKWT68bpxzNlZPeWIsWIgtiVEXle6HWBRlrMPObfJsh6Hn28_hNaBdmEFWQxgwtOdie2ZcHk3-iCgLFQ
 Content-Type:  application/json
 

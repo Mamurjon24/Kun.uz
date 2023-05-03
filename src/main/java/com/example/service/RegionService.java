@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.example.dto.region.RegionDTO;
 import com.example.entity.RegionEntity;
+import com.example.enums.LangEnum;
 import com.example.exp.AppBadRequestException;
 import com.example.exp.MethodNotAllowedExeption;
 import com.example.repository.RegionRepository;
@@ -98,5 +99,22 @@ public class RegionService {
                 return listEng;
         }
         return null;
+    }
+    public RegionDTO getByIdAndLang(Integer id, LangEnum lang) {
+        RegionEntity entity = get(id);
+        RegionDTO dto = new RegionDTO();
+        dto.setId(entity.getId());
+        switch (lang) {
+            case ENG -> {
+                dto.setName(entity.getNameEng());
+            }
+            case RU -> {
+                dto.setName(entity.getNameRu());
+            }
+            case UZ -> {
+                dto.setName(entity.getNameUz());
+            }
+        }
+        return dto;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.dto.articletype;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ArticleTypeDTO {
     @NotNull(message = "Id required")
     private Integer id;
@@ -29,4 +31,5 @@ public class ArticleTypeDTO {
     private Boolean visible;
     private LocalDateTime createdDate = LocalDateTime.now();
     private LocalDateTime updatedDate;
+    private String name;
 }

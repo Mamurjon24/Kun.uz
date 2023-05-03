@@ -1,5 +1,6 @@
 package com.example.dto.region;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RegionDTO {
     @NotNull(message = "Id required")
     private Integer id;
@@ -30,5 +32,6 @@ public class RegionDTO {
     private Boolean visible;
     private LocalDateTime createdDate = LocalDateTime.now();
     private LocalDateTime updatedDate;
+    private String name;
 
 }

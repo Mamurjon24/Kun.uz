@@ -57,8 +57,8 @@ public class CommentService {
         return true;
     }
 
-    public ArticleCommentMapper getAllByArticleId(String articleId) {
-        ArticleCommentMapper dtoList = commentRepository.findByArticleId(articleId);
+    public List<ArticleCommentMapper> getAllByArticleId(String articleId) {
+        List<ArticleCommentMapper> dtoList = commentRepository.findByArticleId(articleId);
         return dtoList;
     }
 

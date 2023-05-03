@@ -45,11 +45,11 @@ public class ArticleEntity {
     @ManyToOne
     @JoinColumn(name = "publisher_id", insertable = false, updatable = false)
     private ProfileEntity publisher;
-    @Column(name = "photo_id")
-    private String photoId;
+    @Column(name = "image_id")
+    private String imageId;
     @ManyToOne
-    @JoinColumn(name = "photo_id", insertable = false, updatable = false)
-    private AttachEntity photo;
+    @JoinColumn(name = "image_id", insertable = false, updatable = false)
+    private AttachEntity image;
     @Column(name = "articleType_id")
     private Integer typeId;
     @ManyToOne
@@ -70,11 +70,11 @@ public class ArticleEntity {
     public ArticleEntity() {
     }
 
-    public ArticleEntity(String id, String title, String description, String photoId, LocalDateTime publishedDate) {
+    public ArticleEntity(String id, String title, String description, String imageId, LocalDateTime publishedDate) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.photoId = photoId;
+        this.imageId = imageId;
         this.publishedDate = publishedDate;
     }
 }

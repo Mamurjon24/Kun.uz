@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 public interface SavedArticleRepository extends CrudRepository<SavedArticleEntity,Integer> {
-    @Query("select new com.example.mapper.SavedArticleMapper(s.id,s.article.id,s.article.title,s.article.description,s.article.photo.id) from SavedArticleEntity as s ")
+    @Query("select new com.example.mapper.SavedArticleMapper(s.id,s.article.id,s.article.title,s.article.description,s.article.image.id) from SavedArticleEntity as s ")
     SavedArticleMapper findAllSavedArticle();
 }

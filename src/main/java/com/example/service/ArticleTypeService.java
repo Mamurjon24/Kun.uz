@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.example.dto.articletype.ArticleTypeDTO;
 import com.example.entity.ArticleTypeEntity;
+import com.example.enums.LangEnum;
 import com.example.exp.AppBadRequestException;
 import com.example.exp.MethodNotAllowedExeption;
 import com.example.repository.ArticleTypeRepository;
@@ -99,5 +100,22 @@ public class ArticleTypeService {
                 return listEng;
         }
         return null;
+    }
+    public ArticleTypeDTO getByIdAndLang(Integer id, LangEnum lang) {
+        ArticleTypeEntity entity = get(id);
+        ArticleTypeDTO dto = new ArticleTypeDTO();
+        dto.setId(entity.getId());
+        switch (lang) {
+            case ENG -> {
+                dto.setName(entity.getNameEng());
+            }
+            case RU -> {
+                dto.setName(entity.getNameRu());
+            }
+            case UZ -> {
+                dto.setName(entity.getNameUz());
+            }
+        }
+        return dto;
     }
 }

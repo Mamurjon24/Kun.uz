@@ -76,9 +76,10 @@ Content-Type:  application/json
   "typeId": 3
 }
 ### ChangeStatus Article
-PUT localhost:8080/api/v1/article/changeStatus/91849840-b6dd-4a58-803a-bc3d336f659f
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI3NTY5MDgsImlkIjo1LCJyb2xlIjoiUFVCTElTSEVSIiwiZXhwIjoxNjgyODQzMzA4LCJpc3MiOiJLdW51eiB0ZXN0IHBvcnRhbGkifQ.x9gCCPzOflthrgfxHqnSaqbl10hnzhXa-oYguJCJOOb2ugS9WaYPpMITO7a4hJlyXdvrfMxvjHqg6bLmcTYuEQ
+PUT localhost:8080/api/v1/article/change-Status/8a1f193b-04b1-4e5c-8bd3-94069c9f6405?status=PUBLISHED
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODMxMTYyNDMsImlkIjo0LCJyb2xlIjoiUFVCTElTSEVSIiwiZXhwIjoxNjgzMjAyNjQzLCJpc3MiOiJLdW51eiB0ZXN0IHBvcnRhbGkifQ.dr-ZgEoArMS-oPA7K1n0eozOU46L20ZqudWXTXW18qB1LOjjrjNWpmuHd0u9Ku8AqvJ52--kYHWwLyiFTx4uUw
 Content-Type:  application/json
+
 
 ### Delete Article
 PUT localhost:8080/api/v1/article/delete/5ab5ca0f-c660-48ad-8cf6-850c84915a69
@@ -95,10 +96,47 @@ GET localhost:8080/api/v1/article/getLastThreeArticleByType/3
 GET localhost:8080/api/v1/article/getArticlesNotInList?idList=9d9375a0-e00f-47a9-8692-bd80456d7ac2&idList=9d9375a0-e00f-47a9-8692-bd80456d7ac2&idList=fa43203a-125e-4a9d-ab21-78de2743dd1e
 
 ### GetLast4ArticleByTypes
-PUT localhost:8080/api/v1/article/getLast4ArticleByTypes/1
+PUT localhost:8080/api/v1/article/findLast4ArticleByTypes/1
 Content-Type:  application/json
 
 {
 "articleIdList": ["9d9375a0-e00f-47a9-8692-bd80456d7ac2","5ab5ca0f-c660-48ad-8cf6-850c84915a69"]
 }
 
+### Get GetArticlesNotInList
+GET localhost:8080/api/v1/article/get4MostReadArticles
+
+### findLast5ArticleByTypesAndRegionId Article
+PUT localhost:8080/api/v1/article/findLast5ArticleByTypesAndRegionId/1?typeName=Maqola №1
+Content-Type:  application/json
+
+### PagingByRegion Article
+PUT localhost:8080/api/v1/article/pagingByRegion
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODMxMjI2MTksImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODMyMDkwMTksImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.LP1Yj6q3MknNVECVGw4S7_q4ZXl8HwzicxxHUCl44Vkw88PBWVQagL3Fxfj-Qf3E6mPr7J16uzHZpqBHm8PLlA
+Content-Type:  application/json
+
+### getTop5ByArticleByCategory Article
+PUT localhost:8080/api/v1/article/getTop5ByArticleByCategory/3
+Content-Type:  application/json
+
+### PagingByRegion Article
+PUT localhost:8080/api/v1/article/pagingByCategory
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODMxMjI2MTksImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODMyMDkwMTksImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.LP1Yj6q3MknNVECVGw4S7_q4ZXl8HwzicxxHUCl44Vkw88PBWVQagL3Fxfj-Qf3E6mPr7J16uzHZpqBHm8PLlA
+Content-Type:  application/json
+
+### getIncreaseArticleViewCountByArticleId Article
+PUT localhost:8080/api/v1/article/getIncreaseArticleViewCountByArticleId/4fe1dda1-dbc7-4aa9-a6bd-e568a13b4e12
+Content-Type:  application/json
+
+### getIncreaseArticleShareCountByArticleId Article
+PUT localhost:8080/api/v1/article/getIncreaseArticleShareCountByArticleId/91849840-b6dd-4a58-803a-bc3d336f659f
+Content-Type:  application/json
+
+### Create filter
+POST localhost:8080/api/v1/article/filter
+Content-Type:  application/json
+
+{
+  "title": "Nimadir",
+  "regionId": 1
+}
