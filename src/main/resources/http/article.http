@@ -103,6 +103,9 @@ Content-Type:  application/json
 "articleIdList": ["9d9375a0-e00f-47a9-8692-bd80456d7ac2","5ab5ca0f-c660-48ad-8cf6-850c84915a69"]
 }
 
+### GetBytageName
+GET localhost:8080/api/v1/article/getByTags?tag=#sloshkommuxim
+
 ### Get GetArticlesNotInList
 GET localhost:8080/api/v1/article/get4MostReadArticles
 

@@ -84,6 +84,11 @@ public interface ArticleRepository extends CrudRepository<ArticleEntity, String>
             " where a.visible = true ORDER BY a.viewCount DESC limit 4")
     List<ArticleShortInfoMapper> findTop4ByViewCountAndStatusAndVisible();
 
+    //11.Get Last 4 Article By TagName
+    @Query("SELECT new ArticleEntity(a.id,a.title,a.description,a.imageId,a.publishedDate) FROM ArticleEntity as a " +
+            " where a.visible = true and a.tags =:tagname ")
+    List<ArticleShortInfoMapper> findByTags(@Param("tagname") String tagname);
+
     //12. Get Last 5 Article By Types  And By Region Key
     @Query("SELECT new ArticleEntity(a.id,a.title,a.description,a.imageId,a.publishedDate) FROM ArticleEntity as a " +
             " where a.visible = true and a.type.nameUz =:typeName and a.regionId = :regionId ORDER BY a.createdDate DESC limit 5")

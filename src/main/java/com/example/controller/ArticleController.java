@@ -88,6 +88,11 @@ public class ArticleController {
         List<ArticleShortInfoDTO> articleList = articleService.find4MostReadArticles();
         return ResponseEntity.ok(articleList);
     }
+    @GetMapping("/getByTags")
+    public ResponseEntity<List<ArticleShortInfoDTO>> getByTags(@RequestParam String tag) {
+        List<ArticleShortInfoDTO> articleList = articleService.findByTags(tag);
+        return ResponseEntity.ok(articleList);
+    }
 
     @PutMapping(value = "/findLast5ArticleByTypesAndRegionId/{id}")
     public ResponseEntity<?> findLast5ArticleByTypesAndRegionId(@PathVariable("id") Integer regionId,

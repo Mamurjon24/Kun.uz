@@ -1,0 +1,8 @@
+### Create Article
+POST localhost:8080/api/v1/article-like
+Content-Type:  application/json
+
+{
+  "articleId": "5ab5ca0f-c660-48ad-8cf6-850c84915a69",
+  "likeDislike":"DISLIKE"
+}

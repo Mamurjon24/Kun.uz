@@ -37,7 +37,24 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODMwMTE2MDksImlkIjo2LCJyb
 Content-Type:  application/json
 
 ### List Comment
-POST localhost:8080/api/v1/comment/getList/91849840-b6dd-4a58-803a-bc3d336f659f
+POST localhost:8080/api/v1/comment/getListByArticleId/91849840-b6dd-4a58-803a-bc3d336f659f
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODMwOTUzOTYsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODMxODE3OTYsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.I3F68pMKWT68bpxzNlZPeWIsWIgtiVEXle6HWBRlrMPObfJsh6Hn28_hNaBdmEFWQxgwtOdie2ZcHk3-iCgLFQ
 Content-Type:  application/json
 
+### Paging Article Comment
+PUT localhost:8080/api/v1/comment/paging
+Content-Type:  application/json
+
+### List Comment
+POST localhost:8080/api/v1/comment/findRepliedCommentListByCommentId/1
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODMwOTUzOTYsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE2ODMxODE3OTYsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.I3F68pMKWT68bpxzNlZPeWIsWIgtiVEXle6HWBRlrMPObfJsh6Hn28_hNaBdmEFWQxgwtOdie2ZcHk3-iCgLFQ
+Content-Type:  application/json
+
+### Create filter
+POST localhost:8080/api/v1/comment/filter
+Content-Type:  application/json
+
+{
+  "profileId": 1,
+  "articleId": "91849840-b6dd-4a58-803a-bc3d336f659f"
+}

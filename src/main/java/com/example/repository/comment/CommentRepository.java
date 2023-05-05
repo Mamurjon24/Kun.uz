@@ -1,4 +1,4 @@
-package com.example.repository;
+package com.example.repository.comment;
 
 import com.example.entity.CommentEntity;
 import com.example.mapper.ArticleCommentMapper;
@@ -23,7 +23,14 @@ public interface CommentRepository extends CrudRepository<CommentEntity, Integer
     //Optional<CommentEntity> findByIdAndProfileId(String articleId, Integer profileId);
     @Query("select c from CommentEntity as c where c.article.id = :articleId and c.profile.id = :profileId")
     CommentEntity findByIdAndProfileId( @Param("articleId") String articleId,@Param("profileId") Integer profileId);
+
+    //4. Get Article Comment List By ArticleId
     @Query("select new com.example.mapper.ArticleCommentMapper(c.id,c.createdDate,c.updatedDate,c.profile.id,c.profile.name,c.profile.surname) from CommentEntity as c where c.article.id = :articleId")
     List<ArticleCommentMapper> findByArticleId(@Param("articleId") String articleId);
+
+    // 7. Get Replied Comment List by CommentId
+    @Query("select new com.example.mapper.ArticleCommentMapper(c.id,c.createdDate,c.updatedDate,c.profile.id,c.profile.name,c.profile.surname) from CommentEntity as c where c.replyId = :replyId")
+    List<ArticleCommentMapper> getRepliedCommentListByCommentId(@Param("replyId") Integer replyId);
+
 
 }

@@ -165,6 +165,14 @@ public class ArticleService {
         });
         return dtoList;
     }
+    public List<ArticleShortInfoDTO> findByTags(String tags) {
+        List<ArticleShortInfoMapper> entityList = articleRepository.findByTags(tags);
+        List<ArticleShortInfoDTO> dtoList = new LinkedList<>();
+        entityList.forEach(entity -> {
+            dtoList.add(toArticleShortInfo(entity));
+        });
+        return dtoList;
+    }
 
     public List<ArticleShortInfoDTO> findLast5ArticleByTypesAndRegionId(Integer regionId, String typeName) {
         List<ArticleShortInfoMapper> entityList = articleRepository.findTop5ByArticleTypeAndRegionId(typeName, regionId);
@@ -241,7 +249,7 @@ public class ArticleService {
         dto.setTitle(entity.getTitle());
         dto.setDescription(entity.getDescription());
         dto.setPublishedDate(entity.getPublishedDate());
-        // dto.setImage(attachService.getAttachLink(entity.getPhotoId()));
+        // dto.setImage(attachService.getAttachLink(entity.getImageId()));
         return dto;
     }
 
