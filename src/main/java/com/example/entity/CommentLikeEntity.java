@@ -20,11 +20,11 @@ public class CommentLikeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profile_id", insertable = false, updatable = false)
     private ProfileEntity profile;
-    @Column(name = "article_id")
-    private String articleId;
+    @Column(name = "comment_id")
+    private Integer commentId;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "article_id", insertable = false, updatable = false)
-    private ArticleEntity article;
+    @JoinColumn(name = "comment_id", insertable = false, updatable = false)
+    private CommentEntity comment;
     @Column(name = "created_date")
     private LocalDateTime createdDate = LocalDateTime.now();
     @Column(name = "status")

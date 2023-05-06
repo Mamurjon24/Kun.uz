@@ -11,18 +11,18 @@ import org.springframework.data.repository.query.Param;
 import java.util.Optional;
 
 public interface CommentLikeRepository extends CrudRepository<CommentLikeEntity,Integer> {
-    Optional<CommentLikeEntity> findByArticleIdAndProfileId(String articleId, Integer profileId);
+    Optional<CommentLikeEntity> findByCommentIdAndProfileId(Integer commentId, Integer profileId);
 
     @Modifying
     @Transactional
-    @Query("update CommentLikeEntity  set status =:status where articleId=:articleId and profileId=:profileId")
+    @Query("update CommentLikeEntity  set status =:status where commentId=:commentId and profileId=:profileId")
     int update(@Param("status") EmotionStatus status,
-               @Param("articleId") String articleId,
+               @Param("commentId") Integer commentId,
                @Param("profileId") Integer profileId);
 
     @Modifying
     @Transactional
-    @Query("delete from CommentLikeEntity where articleId=:articleId and profileId=:profileId")
-    int delete(String articleId, Integer profileId);
+    @Query("delete from CommentLikeEntity where commentId=:commentId and profileId=:profileId")
+    int delete(Integer commentId, Integer profileId);
 }
 

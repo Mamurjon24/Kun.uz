@@ -37,4 +37,9 @@ public class CommentEntity {
     private LocalDateTime updatedDate;
     @Column(name = "visible")
     private Boolean visible = Boolean.TRUE;
+    @Column(name = "like_count")
+    private Integer likeCount;
+    @Column(name = "dislike_count")
+    private Integer disLikeCount;
+
 }

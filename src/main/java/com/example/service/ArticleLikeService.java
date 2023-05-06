@@ -36,10 +36,7 @@ public class ArticleLikeService {
     public String update(ArticleLikeDTO dto, ArticleLikeEntity entity,Integer profileId) {
         LikeDislike dtoStatus = dto.getLikeDislike();
         LikeDislike entityStatus = entity.getLikeDislike();
-        if (dtoStatus.equals(LikeDislike.LIKE) && entityStatus.equals(LikeDislike.LIKE)) {
-            entity.setLikeDislike(LikeDislike.NONE);
-        }
-        if (dtoStatus.equals(LikeDislike.DISLIKE) && entityStatus.equals(LikeDislike.DISLIKE)) {
+        if (dtoStatus.equals(LikeDislike.LIKE) && entityStatus.equals(LikeDislike.LIKE) || dtoStatus.equals(LikeDislike.DISLIKE) && entityStatus.equals(LikeDislike.DISLIKE)) {
             entity.setLikeDislike(LikeDislike.NONE);
         }
         if (dtoStatus.equals(LikeDislike.LIKE) && entityStatus.equals(LikeDislike.DISLIKE)) {
