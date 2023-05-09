@@ -5,6 +5,7 @@ import com.example.dto.region.RegionDTO;
 import com.example.enums.ProfileRole;
 import com.example.service.RegionService;
 import com.example.util.JwtUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -18,34 +19,37 @@ public class RegionController {
     @Autowired
     private RegionService regionService;
 
-    @PostMapping({"", "/"})
+    @PostMapping({"/private", "/private/"})
     public ResponseEntity<RegionDTO> create(@RequestBody RegionDTO dto,
-                                            @RequestHeader("Authorization") String authorization) {
-        JwtDTO jwtDTO = JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
-        return ResponseEntity.ok(regionService.create(dto, jwtDTO.getId()));
+                                            HttpServletRequest request) {
+        JwtUtil.checkForRequiredRole(request, ProfileRole.ADMIN);
+        Integer ptrId = (Integer) request.getAttribute("role");
+        return ResponseEntity.ok(regionService.create(dto, ptrId));
     }
 
-    @PutMapping(value = "/update")
+    @PutMapping(value = "private/update")
     public ResponseEntity<?> update(@RequestBody RegionDTO dto,
-                                    @RequestHeader("Authorization") String authorization) {
-        JwtDTO jwtDTO = JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
-        return ResponseEntity.ok(regionService.update(dto, jwtDTO.getId()));
+                                    HttpServletRequest request) {
+        JwtUtil.checkForRequiredRole(request, ProfileRole.ADMIN);
+        Integer ptrId = (Integer) request.getAttribute("role");
+        return ResponseEntity.ok(regionService.update(dto, ptrId));
     }
 
-    @PutMapping(value = "/paging")
-    public ResponseEntity<Page<RegionDTO>> paging(@RequestHeader("Authorization") String authorization,
+    @PutMapping(value = "/private/paging")
+    public ResponseEntity<Page<RegionDTO>> paging(HttpServletRequest request,
                                                   @RequestParam(value = "page", defaultValue = "1") int page,
                                                   @RequestParam(value = "size", defaultValue = "2") int size) {
-        JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
+        JwtUtil.checkForRequiredRole(request, ProfileRole.ADMIN);
         Page<RegionDTO> response = regionService.pagingtion(page, size);
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping(value = "/delete/{id}")
-    public ResponseEntity<?> delete(@RequestHeader("Authorization") String authorization,
+    @PutMapping(value = "/private/delete/{id}")
+    public ResponseEntity<?> delete(HttpServletRequest request,
                                     @PathVariable("id") Integer id) {
-        JwtDTO jwtDTO = JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
-        return ResponseEntity.ok(regionService.delete(jwtDTO.getId(),id));
+        JwtUtil.checkForRequiredRole(request, ProfileRole.ADMIN);
+        Integer ptrId = (Integer) request.getAttribute("role");
+        return ResponseEntity.ok(regionService.delete(ptrId,id));
     }
 
     @PutMapping(value = "/getByLang/{lang}")

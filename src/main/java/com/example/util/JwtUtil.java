@@ -4,6 +4,8 @@ import com.example.dto.jwt.JwtDTO;
 import com.example.enums.ProfileRole;
 import com.example.exp.MethodNotAllowedExeption;
 import io.jsonwebtoken.*;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.server.MethodNotAllowedException;
 
 import java.util.Date;
 
@@ -23,6 +25,7 @@ public class JwtUtil {
         jwtBuilder.setIssuer("Kunuz test portali");
         return jwtBuilder.compact();
     }
+
     public static String encode(String text) {
         JwtBuilder jwtBuilder = Jwts.builder();
         jwtBuilder.setIssuedAt(new Date());
@@ -32,21 +35,18 @@ public class JwtUtil {
         jwtBuilder.setIssuer("Kunuz test portali");
         return jwtBuilder.compact();
     }
+
     public static JwtDTO decode(String token) {
-        try {
-            JwtParser jwtParser = Jwts.parser();
-            jwtParser.setSigningKey(secretKey);
-            Jws<Claims> jws = jwtParser.parseClaimsJws(token);
-            Claims claims = jws.getBody();
-            Integer id = (Integer) claims.get("id");
-            String role = (String) claims.get("role");
-            ProfileRole profileRole = ProfileRole.valueOf(role);
-            return new JwtDTO(id, profileRole);
-        } catch (JwtException e) {
-            e.printStackTrace();
-        }
-        throw new MethodNotAllowedExeption("Jwt exception");
+        JwtParser jwtParser = Jwts.parser();
+        jwtParser.setSigningKey(secretKey);
+        Jws<Claims> jws = jwtParser.parseClaimsJws(token);
+        Claims claims = jws.getBody();
+        Integer id = (Integer) claims.get("id");
+        String role = (String) claims.get("role");
+        ProfileRole profileRole = ProfileRole.valueOf(role);
+        return new JwtDTO(id, profileRole);
     }
+
     public static String decodeEmailVerification(String token) {
         try {
             JwtParser jwtParser = Jwts.parser();
@@ -59,6 +59,7 @@ public class JwtUtil {
         }
         throw new MethodNotAllowedExeption("Jwt exception");
     }
+
     public static JwtDTO getJwtDTO(String authorization) {
         String[] str = authorization.split(" ");
         String jwt = str[1];
@@ -97,6 +98,19 @@ public class JwtUtil {
             throw new MethodNotAllowedExeption("You are not MODERATOR:)");
         }
         return jwtDTO;
+    }
+    public static void checkForRequiredRole(HttpServletRequest request, ProfileRole... roleList) {
+        ProfileRole jwtRole = (ProfileRole) request.getAttribute("role");
+        boolean roleFound = false;
+        for (ProfileRole role : roleList) {
+            if (jwtRole.equals(role)) {
+                roleFound = true;
+                break;
+            }
+        }
+        if (!roleFound) {
+            throw new MethodNotAllowedExeption("Method not allowed:)");
+        }
     }
 
 }

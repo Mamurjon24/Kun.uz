@@ -1,7 +1,5 @@
 package com.example.controller;
 
-import com.example.dto.article.ArticleFilterDTO;
-import com.example.dto.article.ArticleShortInfoDTO;
 import com.example.dto.comment.CommentCreateRequestDTO;
 import com.example.dto.comment.CommentDTO;
 import com.example.dto.comment.CommentFilterDTO;

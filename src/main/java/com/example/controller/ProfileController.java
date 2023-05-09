@@ -6,6 +6,7 @@ import com.example.dto.profile.ProfileRequestCustomDTO;
 import com.example.enums.ProfileRole;
 import com.example.service.ProfileService;
 import com.example.util.JwtUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -22,19 +23,21 @@ public class ProfileController {
 
     @PostMapping({"", "/"})
     public ResponseEntity<ProfileDTO> create(@RequestBody ProfileDTO dto,
-                                             @RequestHeader("Authorization") String authorization) {
-        JwtDTO jwtDTO = JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
-        return ResponseEntity.ok(profileService.create(dto, jwtDTO.getId()));
+                                             HttpServletRequest request) {
+        JwtUtil.checkForRequiredRole(request, ProfileRole.ADMIN);
+        Integer ptrId = (Integer) request.getAttribute("role");
+        return ResponseEntity.ok(profileService.create(dto, ptrId));
     }
 
-    @PutMapping(value = "/update")
-    public ResponseEntity<?> update(@RequestHeader("Authorization") String authorization,
+    @PutMapping(value = "/private/update")
+    public ResponseEntity<?> update(HttpServletRequest request,
                                     @RequestBody ProfileDTO dto) {
-        JwtDTO jwtDTO = JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
-        return ResponseEntity.ok(profileService.update(jwtDTO.getId(), dto));
+        JwtUtil.checkForRequiredRole(request, ProfileRole.ADMIN);
+        Integer ptrId = (Integer) request.getAttribute("role");
+        return ResponseEntity.ok(profileService.update(ptrId, dto));
     }
 
-    @PutMapping(value = "/updateByProfile")
+    @PutMapping(value = "/public/updateByProfile")
     public ResponseEntity<?> updateByProfile(@RequestHeader("Authorization") String authorization,
                                              @RequestBody ProfileDTO dto) {
         String[] str = authorization.split(" ");
@@ -43,32 +46,33 @@ public class ProfileController {
         return ResponseEntity.ok(profileService.updateOwnProfile(jwtDTO.getId(), dto));
     }
 
-    @PutMapping(value = "/paging")
-    public ResponseEntity<Page<ProfileDTO>> paging(@RequestHeader("Authorization") String authorization,
+    @PutMapping(value = "/private/paging")
+    public ResponseEntity<Page<ProfileDTO>> paging(HttpServletRequest request,
                                                    @RequestParam(value = "page", defaultValue = "1") int page,
                                                    @RequestParam(value = "size", defaultValue = "2") int size) {
-        JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
+        JwtUtil.checkForRequiredRole(request, ProfileRole.ADMIN);
         Page<ProfileDTO> response = profileService.pagingtion(page, size);
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/getProfileList")
+    @GetMapping("/public/getProfileList")
     public ResponseEntity<List<ProfileDTO>> getAll() {
         List<ProfileDTO> list = profileService.getAll();
         return ResponseEntity.ok(list);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/public/{id}")
     public ResponseEntity<ProfileDTO> getById(@PathVariable("id") Integer id) {
         ProfileDTO dto = profileService.getById(id);
         return ResponseEntity.ok(dto);
     }
 
-    @PutMapping(value = "/delete/{id}")
-    public ResponseEntity<?> delete(@RequestHeader("Authorization") String authorization,
+    @PutMapping(value = "/private/delete/{id}")
+    public ResponseEntity<?> delete(HttpServletRequest request,
                                     @PathVariable("id") Integer id) {
-        JwtDTO jwtDTO = JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
-        return ResponseEntity.ok(profileService.delete(jwtDTO.getId(),id));
+        JwtUtil.checkForRequiredRole(request, ProfileRole.ADMIN);
+        Integer ptrId = (Integer) request.getAttribute("role");
+        return ResponseEntity.ok(profileService.delete(ptrId,id));
     }
 
     @PutMapping(value = "/updatePhoto/{photoId}")
