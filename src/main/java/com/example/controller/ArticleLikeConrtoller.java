@@ -17,11 +17,7 @@ public class ArticleLikeConrtoller {
     private ArticleLikeService articleLikeService;
 
     @PostMapping({"", "/"})
-    public ResponseEntity<?> create(@RequestHeader("Authorization") String authorization,
-                                     @RequestBody @Valid ArticleLikeDTO dto) {
-        String[] str = authorization.split(" ");
-        String jwt = str[1];
-        JwtDTO jwtDTO = JwtUtil.decode(jwt);
-        return ResponseEntity.ok(articleLikeService.check(dto,jwtDTO.getId()));
+    public ResponseEntity<?> create(@RequestBody @Valid ArticleLikeDTO dto) {
+              return ResponseEntity.ok(articleLikeService.check(dto));
     }
 }

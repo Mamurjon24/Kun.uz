@@ -1,6 +1,6 @@
 ### Create Article
-POST localhost:8080/api/v1/article
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI5MjY4NDcsImlkIjozLCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNjgzMDEzMjQ4LCJpc3MiOiJLdW51eiB0ZXN0IHBvcnRhbGkifQ.6s_S2HLO1Vlab505WhpY56xgIJhZ0YQcMB0dcNYRyJ6v1-Ln1I1JtFcHZukDzItqQwCUd12GL7HFDBui2vs9gg
+PUT localhost:8080/api/v1/article/private
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODM5MDU0NTgsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IlJPTEVfQURNSU4iLCJleHAiOjE2ODM5OTE4NTgsImlzcyI6Ikt1bnV6IHRlc3QgcG9ydGFsaSJ9.Y5tfa4Xtz-pB1N8wLWVYF-ERQw3qSvWW44Nowq0867p578DxHVBuyTXy474qjQGXWpAR6nq_Sb6Xr7Yu7AqI5A
 Content-Type:  application/json
 
 //{
@@ -52,13 +52,13 @@ Content-Type:  application/json
 //  "typeId": 2
 //}
 {
-  "title": "Nimadir8",
-  "description": "Qisqacha Nimadir8",
-  "content": "Bir bor ekan bir yoq ekan8",
-  "regionId": 1,
-  "categoryId": 1,
-  "typeId": 1,
-  "photoId" : "92475d3e-1dfb-4bdf-8704-e090aed2db99"
+  "title": "Nimadir9",
+  "description": "Qisqacha Nimadir9",
+  "content": "Bir bor ekan bir yoq ekan9",
+  "regionId": 2,
+  "categoryId": 2,
+  "typeId": 2,
+  "imageId" : "92475d3e-1dfb-4bdf-8704-e090aed2db99"
 }
 
 ### Update Article
@@ -87,10 +87,10 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODI3NTMwMDksImlkIjozLCJyb
 Content-Type:  application/json
 
 ### Get 5 Article
-GET localhost:8080/api/v1/article/getLastFiveArticleByType/5
+GET localhost:8080/api/v1/article/public/getLastFiveArticleByType/5
 
 ### Get 3 Article
-GET localhost:8080/api/v1/article/getLastThreeArticleByType/3
+GET localhost:8080/api/v1/article/public/getLastThreeArticleByType/2
 
 ### Get GetArticlesNotInList
 GET localhost:8080/api/v1/article/getArticlesNotInList?idList=9d9375a0-e00f-47a9-8692-bd80456d7ac2&idList=9d9375a0-e00f-47a9-8692-bd80456d7ac2&idList=fa43203a-125e-4a9d-ab21-78de2743dd1e
@@ -104,7 +104,7 @@ Content-Type:  application/json
 }
 
 ### GetBytageName
-GET localhost:8080/api/v1/article/getByTags?tag=#sloshkommuxim
+GET localhost:8080/api/v1/article/public/getByTags?tag=#sloshkommuxim
 
 ### Get GetArticlesNotInList
 GET localhost:8080/api/v1/article/get4MostReadArticles

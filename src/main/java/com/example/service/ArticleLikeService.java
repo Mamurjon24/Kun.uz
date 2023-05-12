@@ -4,6 +4,7 @@ import com.example.dto.articleLike.ArticleLikeDTO;
 import com.example.entity.ArticleLikeEntity;
 import com.example.enums.LikeDislike;
 import com.example.repository.ArticleLikeRepository;
+import com.example.util.SpringSecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +15,13 @@ public class ArticleLikeService {
     @Autowired
     private ArticleLikeRepository articleLikeRepository;
 
-    public String check(ArticleLikeDTO dto,Integer profileId) {
+    public String check(ArticleLikeDTO dto) {
         Optional<ArticleLikeEntity> optional = articleLikeRepository.getLikeDisLikeStatus(dto.getArticleId());
         if (optional.isEmpty()) {
-          return create(dto,profileId);
+          return create(dto, SpringSecurityUtil.getProfileId());
         }
         else  {
-            return update(dto, optional.get(),profileId);
+            return update(dto, optional.get(),SpringSecurityUtil.getProfileId());
         }
     }
 

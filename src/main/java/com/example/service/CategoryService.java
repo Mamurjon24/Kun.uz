@@ -8,6 +8,7 @@ import com.example.enums.LangEnum;
 import com.example.exp.AppBadRequestException;
 import com.example.exp.MethodNotAllowedExeption;
 import com.example.repository.CategoryRepository;
+import com.example.util.SpringSecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ import java.util.Optional;
 public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
-    public CategoryDTO create(CategoryDTO dto, Integer id) {
+    public CategoryDTO create(CategoryDTO dto) {
         isValidProfile(dto);
         CategoryEntity entity = new CategoryEntity();
         entity.setVisible(dto.getVisible());
@@ -29,7 +30,7 @@ public class CategoryService {
         entity.setNameRu(dto.getNameRu());
         entity.setNameEng(dto.getNameEng());
         entity.setUpdatedDate(LocalDateTime.now());
-        entity.setPrtId(id);
+        entity.setPrtId(SpringSecurityUtil.getProfileId());
         categoryRepository.save(entity);
         dto.setId(entity.getId());
         return dto;
@@ -42,14 +43,14 @@ public class CategoryService {
         }
     }
 
-    public Boolean update(CategoryDTO dto, Integer id) {
+    public Boolean update(CategoryDTO dto) {
         CategoryEntity entity = get(dto.getId());
         entity.setVisible(dto.getVisible());
         entity.setNameUz(dto.getNameUz());
         entity.setNameRu(dto.getNameRu());
         entity.setNameEng(dto.getNameEng());
         entity.setUpdatedDate(LocalDateTime.now());
-        entity.setPrtId(id);
+        entity.setPrtId(SpringSecurityUtil.getProfileId());
         categoryRepository.save(entity);
         return true;
     }
@@ -83,8 +84,8 @@ public class CategoryService {
         Page<CategoryDTO> response = new PageImpl<CategoryDTO>(dtoList, pageable, totalCount);
         return response;
     }
-    public Integer delete(Integer adminId,Integer id) {
-        Integer num = categoryRepository.changeRegionVisible(Boolean.FALSE,adminId,id );
+    public Integer delete(Integer id) {
+        Integer num = categoryRepository.changeRegionVisible(Boolean.FALSE,SpringSecurityUtil.getProfileId(),id );
         return num;
     }
 

@@ -19,29 +19,22 @@ public class TagController {
     private TagService tagService;
 
     @PostMapping({"/private", "/private/"})
-    public ResponseEntity<TagDTO> create(@RequestBody @Valid TagDTO dto,
-                                         HttpServletRequest request) {
-        JwtUtil.checkForRequiredRole(request, ProfileRole.MODERATOR, ProfileRole.ADMIN);
+    public ResponseEntity<TagDTO> create(@RequestBody @Valid TagDTO dto) {
         return ResponseEntity.ok(tagService.create(dto));
     }
 
     @PostMapping(value = "/private/update")
-    public ResponseEntity<?> update(@RequestBody @Valid TagDTO dto,
-                                    HttpServletRequest request) {
-        JwtUtil.checkForRequiredRole(request, ProfileRole.MODERATOR, ProfileRole.ADMIN);
+    public ResponseEntity<?> update(@RequestBody @Valid TagDTO dto) {
         return ResponseEntity.ok(tagService.update(dto));
     }
 
     @PostMapping(value = "/private/delete/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") Integer id,
-                                    HttpServletRequest request) {
-        JwtUtil.checkForRequiredRole(request, ProfileRole.MODERATOR, ProfileRole.ADMIN);
+    public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
         return ResponseEntity.ok(tagService.delete(id));
     }
 
     @PostMapping(value = "/private/getList")
-    public ResponseEntity<List<TagDTO>> getList(HttpServletRequest request) {
-        JwtUtil.checkForRequiredRole(request, ProfileRole.ADMIN);
+    public ResponseEntity<List<TagDTO>> getList() {
         List<TagDTO> list = tagService.getAll();
         return ResponseEntity.ok(list);
     }

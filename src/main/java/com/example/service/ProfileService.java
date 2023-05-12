@@ -10,6 +10,7 @@ import com.example.exp.MethodNotAllowedExeption;
 import com.example.repository.profile.ProfileCustomRepository;
 import com.example.repository.profile.ProfileRepository;
 import com.example.util.MD5Util;
+import com.example.util.SpringSecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class ProfileService {
     @Autowired
     private ProfileCustomRepository profileCustomRepository;
 
-    public ProfileDTO create(ProfileDTO dto, Integer adminId) {
+    public ProfileDTO create(ProfileDTO dto) {
         // check - homework
         isValidProfile(dto);
         ProfileEntity entity = new ProfileEntity();
@@ -35,7 +36,7 @@ public class ProfileService {
         entity.setEmail(dto.getEmail());
         entity.setRole(dto.getRole());
         entity.setPassword(MD5Util.getMd5Hash(dto.getPassword())); // MD5 ?
-        entity.setPrtId(adminId);
+        entity.setPrtId(SpringSecurityUtil.getProfileId());
         entity.setVisible(true);
         entity.setStatus(GeneralStatus.ACTIVE);
         profileRepository.save(entity); // save profile
@@ -49,12 +50,12 @@ public class ProfileService {
         if (!optional.isEmpty()) {
             throw new MethodNotAllowedExeption("This email or password already use :)");
         }
-        if (dto.getRole().equals(ProfileRole.ADMIN)) {
+        if (dto.getRole().equals(ProfileRole.ROLE_ADMIN)) {
             throw new MethodNotAllowedExeption("You cannot Create Admin:)");
         }
     }
 
-    public boolean update(Integer adminId, ProfileDTO dto) {
+    public boolean update(ProfileDTO dto) {
         ProfileEntity entity = get(dto.getId());
         entity.setName(dto.getName());
         entity.setSurname(dto.getSurname());
@@ -64,21 +65,21 @@ public class ProfileService {
         entity.setPassword(MD5Util.getMd5Hash(dto.getPassword()));
         entity.setUpdatedDate(LocalDateTime.now());
         entity.setVisible(dto.getVisible());
-        entity.setPrtId(adminId);
+        entity.setPrtId(SpringSecurityUtil.getProfileId());
         entity.setStatus(dto.getStatus());
         profileRepository.save(entity);
         return true;
     }
 
-    public boolean updateOwnProfile(Integer id, ProfileDTO dto) {
-        ProfileEntity entity = get(id);
+    public boolean updateOwnProfile(ProfileDTO dto) {
+        ProfileEntity entity = get(SpringSecurityUtil.getProfileId());
         entity.setName(dto.getName());
         entity.setSurname(dto.getSurname());
         entity.setPhone(dto.getPhone());
         entity.setEmail(dto.getEmail());
         entity.setPassword(MD5Util.getMd5Hash(dto.getPassword()));
         entity.setUpdatedDate(LocalDateTime.now());
-        entity.setPrtId(id);
+        entity.setPrtId(SpringSecurityUtil.getProfileId());
         profileRepository.save(entity);
         return true;
     }
@@ -112,9 +113,9 @@ public class ProfileService {
         return response;
     }
 
-    public Integer delete(Integer adminId , Integer id) {
+    public Integer delete(Integer id) {
         get(id);
-        Integer num = profileRepository.changeVisible(Boolean.FALSE, GeneralStatus.BLOCK,adminId, id);
+        Integer num = profileRepository.changeVisible(Boolean.FALSE, GeneralStatus.BLOCK,SpringSecurityUtil.getProfileId(), id);
         return num;
     }
 
@@ -148,8 +149,8 @@ public class ProfileService {
         return dtoList;
     }
 
-    public Boolean updatePhoto(Integer profileId, String photoId) {
-        ProfileEntity entity = get(profileId);
+    public Boolean updatePhoto(String photoId) {
+        ProfileEntity entity = get(SpringSecurityUtil.getProfileId());
         entity.setPhotoId(photoId);
         profileRepository.save(entity);
         return true;

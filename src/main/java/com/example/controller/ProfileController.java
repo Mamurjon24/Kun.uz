@@ -21,36 +21,24 @@ public class ProfileController {
     @Autowired
     private ProfileService profileService;
 
-    @PostMapping({"", "/"})
-    public ResponseEntity<ProfileDTO> create(@RequestBody ProfileDTO dto,
-                                             HttpServletRequest request) {
-        JwtUtil.checkForRequiredRole(request, ProfileRole.ADMIN);
-        Integer ptrId = (Integer) request.getAttribute("role");
-        return ResponseEntity.ok(profileService.create(dto, ptrId));
+    @PostMapping({"/adm", "/adm/"})
+    public ResponseEntity<ProfileDTO> create(@RequestBody ProfileDTO dto) {
+        return ResponseEntity.ok(profileService.create(dto));
     }
 
     @PutMapping(value = "/private/update")
-    public ResponseEntity<?> update(HttpServletRequest request,
-                                    @RequestBody ProfileDTO dto) {
-        JwtUtil.checkForRequiredRole(request, ProfileRole.ADMIN);
-        Integer ptrId = (Integer) request.getAttribute("role");
-        return ResponseEntity.ok(profileService.update(ptrId, dto));
+    public ResponseEntity<?> update(@RequestBody ProfileDTO dto) {
+        return ResponseEntity.ok(profileService.update(dto));
     }
 
     @PutMapping(value = "/public/updateByProfile")
-    public ResponseEntity<?> updateByProfile(@RequestHeader("Authorization") String authorization,
-                                             @RequestBody ProfileDTO dto) {
-        String[] str = authorization.split(" ");
-        String jwt = str[1];
-        JwtDTO jwtDTO = JwtUtil.decode(jwt);
-        return ResponseEntity.ok(profileService.updateOwnProfile(jwtDTO.getId(), dto));
+    public ResponseEntity<?> updateByProfile(@RequestBody ProfileDTO dto) {
+        return ResponseEntity.ok(profileService.updateOwnProfile(dto));
     }
 
     @PutMapping(value = "/private/paging")
-    public ResponseEntity<Page<ProfileDTO>> paging(HttpServletRequest request,
-                                                   @RequestParam(value = "page", defaultValue = "1") int page,
+    public ResponseEntity<Page<ProfileDTO>> paging(@RequestParam(value = "page", defaultValue = "1") int page,
                                                    @RequestParam(value = "size", defaultValue = "2") int size) {
-        JwtUtil.checkForRequiredRole(request, ProfileRole.ADMIN);
         Page<ProfileDTO> response = profileService.pagingtion(page, size);
         return ResponseEntity.ok(response);
     }
@@ -68,20 +56,13 @@ public class ProfileController {
     }
 
     @PutMapping(value = "/private/delete/{id}")
-    public ResponseEntity<?> delete(HttpServletRequest request,
-                                    @PathVariable("id") Integer id) {
-        JwtUtil.checkForRequiredRole(request, ProfileRole.ADMIN);
-        Integer ptrId = (Integer) request.getAttribute("role");
-        return ResponseEntity.ok(profileService.delete(ptrId,id));
+    public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
+        return ResponseEntity.ok(profileService.delete(id));
     }
 
     @PutMapping(value = "/updatePhoto/{photoId}")
-    public ResponseEntity<?> updatePhoto(@RequestHeader("Authorization") String authorization,
-                                         @PathVariable("photoId") String photoId) {
-        String[] str = authorization.split(" ");
-        String jwt = str[1];
-        JwtDTO jwtDTO = JwtUtil.decode(jwt);
-        return ResponseEntity.ok(profileService.updatePhoto(jwtDTO.getId(),photoId));
+    public ResponseEntity<?> updatePhoto(@PathVariable("photoId") String photoId) {
+        return ResponseEntity.ok(profileService.updatePhoto(photoId));
     }
 
     @PostMapping(value = "/filter")

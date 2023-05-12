@@ -13,6 +13,7 @@ import com.example.mapper.ArticleCommentMapper;
 import com.example.mapper.ArticleCommentPagenationMapper;
 import com.example.repository.comment.CommentCustomRepository;
 import com.example.repository.comment.CommentRepository;
+import com.example.util.SpringSecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -29,22 +30,22 @@ public class CommentService {
     @Autowired
     private CommentCustomRepository commentCustomRepository;
 
-    public String create(CommentCreateRequestDTO dto, Integer profileId) {
+    public String create(CommentCreateRequestDTO dto) {
         CommentEntity entity = new CommentEntity();
         entity.setContent(dto.getContent());
         entity.setArticleId(dto.getArticleId());
-        entity.setProfileId(profileId);
+        entity.setProfileId(SpringSecurityUtil.getProfileId());
         entity.setReplyId(dto.getReplyId());
         commentRepository.save(entity);
         return "Comment Created";
     }
 
-    public Boolean update(Integer profileId, CommentDTO dto) {
-        CommentEntity entity = commentRepository.findByIdAndProfileId(dto.getArticleId(), profileId);
+    public Boolean update(CommentDTO dto) {
+        CommentEntity entity = commentRepository.findByIdAndProfileId(dto.getArticleId(), SpringSecurityUtil.getProfileId());
         if (entity == null) {
             throw new ItemNotFoundException("Not found:)");
         }
-        entity.setProfileId(profileId);
+        entity.setProfileId(SpringSecurityUtil.getProfileId());
         entity.setArticleId(dto.getArticleId());
         entity.setContent(dto.getContent());
         entity.setUpdatedDate(LocalDateTime.now());

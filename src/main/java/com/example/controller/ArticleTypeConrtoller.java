@@ -20,42 +20,29 @@ public class ArticleTypeConrtoller {
     private ArticleTypeService articleService;
 
     @PostMapping({"/private", "/private/"})
-    public ResponseEntity<ArticleTypeDTO> create(@RequestBody ArticleTypeDTO dto,
-                                                 HttpServletRequest request) {
-        JwtUtil.checkForRequiredRole(request, ProfileRole.ADMIN);
-        Integer ptrId = (Integer) request.getAttribute("role");
-        return ResponseEntity.ok(articleService.create(dto, ptrId));
+    public ResponseEntity<ArticleTypeDTO> create(@RequestBody ArticleTypeDTO dto) {
+        return ResponseEntity.ok(articleService.create(dto));
     }
 
     @PutMapping(value = "/private/update")
-    public ResponseEntity<?> update(@RequestBody ArticleTypeDTO dto,
-                                    HttpServletRequest request) {
-        JwtUtil.checkForRequiredRole(request, ProfileRole.ADMIN);
-        Integer ptrId = (Integer) request.getAttribute("role");
-        return ResponseEntity.ok(articleService.update(dto, ptrId));
+    public ResponseEntity<?> update(@RequestBody ArticleTypeDTO dto) {
+        return ResponseEntity.ok(articleService.update(dto));
     }
 
     @PutMapping(value = "/private/paging")
-    public ResponseEntity<Page<ArticleTypeDTO>> paging(HttpServletRequest request,
-                                                       @RequestParam(value = "page", defaultValue = "1") int page,
+    public ResponseEntity<Page<ArticleTypeDTO>> paging(@RequestParam(value = "page", defaultValue = "1") int page,
                                                        @RequestParam(value = "size", defaultValue = "2") int size) {
-        JwtUtil.checkForRequiredRole(request, ProfileRole.ADMIN);
         Page<ArticleTypeDTO> response = articleService.pagingtion(page, size);
         return ResponseEntity.ok(response);
     }
 
     @PutMapping(value = "/private/delete/{id}")
-    public ResponseEntity<?> delete(HttpServletRequest request,
-                                    @PathVariable("id") Integer id) {
-        JwtUtil.checkForRequiredRole(request, ProfileRole.ADMIN);
-        Integer ptrId = (Integer) request.getAttribute("role");
-        return ResponseEntity.ok(articleService.delete(ptrId,id));
+    public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
+        return ResponseEntity.ok(articleService.delete(id));
     }
 
     @PutMapping(value = "/private/getByLang/{lang}")
-    public ResponseEntity<List<String>> getByLang(@PathVariable("lang") String lang,
-                                                  HttpServletRequest request) {
-        JwtUtil.checkForRequiredRole(request, ProfileRole.ADMIN);
+    public ResponseEntity<List<String>> getByLang(@PathVariable("lang") String lang) {
         List<String> list = articleService.getByLang(lang);
         return ResponseEntity.ok(list);
     }

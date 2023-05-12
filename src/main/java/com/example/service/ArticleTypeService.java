@@ -6,6 +6,7 @@ import com.example.enums.LangEnum;
 import com.example.exp.AppBadRequestException;
 import com.example.exp.MethodNotAllowedExeption;
 import com.example.repository.ArticleTypeRepository;
+import com.example.util.SpringSecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class ArticleTypeService {
     @Autowired
     private ArticleTypeRepository articleTypeRepository;
 
-    public ArticleTypeDTO create(ArticleTypeDTO dto, Integer id) {
+    public ArticleTypeDTO create(ArticleTypeDTO dto) {
         isValidProfile(dto);
         ArticleTypeEntity entity = new ArticleTypeEntity();
         entity.setVisible(dto.getVisible());
@@ -28,7 +29,7 @@ public class ArticleTypeService {
         entity.setNameRu(dto.getNameRu());
         entity.setNameEng(dto.getNameEng());
         entity.setUpdatedDate(LocalDateTime.now());
-        entity.setPrtId(id);
+        entity.setPrtId(SpringSecurityUtil.getProfileId());
         articleTypeRepository.save(entity);
         dto.setId(entity.getId());
         return dto;
@@ -41,14 +42,14 @@ public class ArticleTypeService {
         }
     }
 
-    public Boolean update(ArticleTypeDTO dto, Integer id) {
+    public Boolean update(ArticleTypeDTO dto) {
         ArticleTypeEntity entity = get(dto.getId());
         entity.setVisible(dto.getVisible());
         entity.setNameUz(dto.getNameUz());
         entity.setNameRu(dto.getNameRu());
         entity.setNameEng(dto.getNameEng());
         entity.setUpdatedDate(LocalDateTime.now());
-        entity.setPrtId(id);
+        entity.setPrtId(SpringSecurityUtil.getProfileId());
         articleTypeRepository.save(entity);
         return true;
     }
@@ -70,20 +71,18 @@ public class ArticleTypeService {
             ArticleTypeDTO dto = new ArticleTypeDTO();
             dto.setId(entity.getId());
             dto.setCreatedDate(entity.getCreatedDate());
-            dto.setId(entity.getId());
             dto.setVisible(entity.getVisible());
             dto.setUpdatedDate(entity.getUpdatedDate());
             dto.setNameEng(entity.getNameEng());
             dto.setNameRu(entity.getNameRu());
             dto.setNameUz(entity.getNameUz());
-            dto.setVisible(entity.getVisible());
             dtoList.add(dto);
         }
         Page<ArticleTypeDTO> response = new PageImpl<ArticleTypeDTO>(dtoList, pageable, totalCount);
         return response;
     }
-    public Integer delete(Integer adminId,Integer id) {
-        Integer num = articleTypeRepository.changeArticleVisible(Boolean.FALSE,adminId,id );
+    public Integer delete(Integer id) {
+        Integer num = articleTypeRepository.changeArticleVisible(Boolean.FALSE,SpringSecurityUtil.getProfileId(),id );
         return num;
     }
 

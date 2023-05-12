@@ -33,10 +33,8 @@ public class EmailController {
     }
 
     @PutMapping(value = "/paging")
-    public ResponseEntity<Page<EmailDTO>> paging(@RequestHeader("Authorization") String authorization,
-                                                 @RequestParam(value = "page", defaultValue = "1") int page,
+    public ResponseEntity<Page<EmailDTO>> paging(@RequestParam(value = "page", defaultValue = "1") int page,
                                                  @RequestParam(value = "size", defaultValue = "2") int size) {
-        JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
         Page<EmailDTO> response = emailService.pagingtion(page, size);
         return ResponseEntity.ok(response);
     }

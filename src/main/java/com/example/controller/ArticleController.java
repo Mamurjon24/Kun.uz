@@ -8,6 +8,7 @@ import com.example.enums.LangEnum;
 import com.example.enums.ProfileRole;
 import com.example.service.ArticleService;
 import com.example.util.JwtUtil;
+import com.example.util.SpringSecurityUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,37 +25,27 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
-    @PostMapping("/private")
-    public ResponseEntity<ArticleRequestDTO> create(@RequestBody @Valid ArticleRequestDTO dto,
-                                                    HttpServletRequest request) {
-        JwtUtil.checkForRequiredRole(request, ProfileRole.MODERATOR, ProfileRole.ADMIN);
-        Integer ptrId = (Integer) request.getAttribute("role");
-        return ResponseEntity.ok(articleService.create(dto, ptrId));
+    @PutMapping("/private")
+    public ResponseEntity<ArticleRequestDTO> create(@RequestBody @Valid ArticleRequestDTO dto) {
+
+        return ResponseEntity.ok(articleService.create(dto, SpringSecurityUtil.getProfileId()));
     }
 
     @PutMapping(value = "/private/update")
-    public ResponseEntity<?> update(@RequestBody ArticleUpdateRequestDTO dto,
-                                    HttpServletRequest request) {
-        JwtUtil.checkForRequiredRole(request, ProfileRole.MODERATOR, ProfileRole.ADMIN);
-        Integer ptrId = (Integer) request.getAttribute("role");
-        return ResponseEntity.ok(articleService.update(dto, ptrId));
+    public ResponseEntity<?> update(@RequestBody ArticleUpdateRequestDTO dto) {
+
+        return ResponseEntity.ok(articleService.update(dto, SpringSecurityUtil.getProfileId()));
     }
 
     @PutMapping(value = "/private/delete/{id}")
-    public ResponseEntity<?> delete(HttpServletRequest request,
-                                    @PathVariable("id") String id) {
-        JwtUtil.checkForRequiredRole(request, ProfileRole.MODERATOR, ProfileRole.ADMIN);
-        Integer ptrId = (Integer) request.getAttribute("role");
-        return ResponseEntity.ok(articleService.delete(ptrId, id));
+    public ResponseEntity<?> delete(@PathVariable("id") String id) {
+        return ResponseEntity.ok(articleService.delete(SpringSecurityUtil.getProfileId(), id));
     }
 
     @PutMapping(value = "/private/change-Status/{id}")
     public ResponseEntity<?> changeStatus(@PathVariable("id") String id,
-                                          @RequestParam("status") String status,
-                                          HttpServletRequest request) {
-        JwtUtil.checkForRequiredRole(request, ProfileRole.PUBLISHER, ProfileRole.ADMIN);
-        Integer ptrId = (Integer) request.getAttribute("role");
-        return ResponseEntity.ok(articleService.changeStatus(ArticleStatus.valueOf(status), id, ptrId));
+                                          @RequestParam("status") String status) {
+        return ResponseEntity.ok(articleService.changeStatus(ArticleStatus.valueOf(status), id, SpringSecurityUtil.getProfileId()));
     }
 
     //    @GetMapping(value = "/getLastFiveArticleByType/{id}")
@@ -93,6 +84,7 @@ public class ArticleController {
         List<ArticleShortInfoDTO> articleList = articleService.find4MostReadArticles();
         return ResponseEntity.ok(articleList);
     }
+
     @GetMapping("/public/getByTags")
     public ResponseEntity<List<ArticleShortInfoDTO>> getByTags(@RequestParam String tag) {
         List<ArticleShortInfoDTO> articleList = articleService.findByTags(tag);
@@ -107,10 +99,8 @@ public class ArticleController {
     }
 
     @PutMapping(value = "/private/pagingByRegion")
-    public ResponseEntity<Page<ArticleDTO>> pagingByRegion(@RequestHeader("Authorization") String authorization,
-                                                           @RequestParam(value = "page", defaultValue = "1") int page,
+    public ResponseEntity<Page<ArticleDTO>> pagingByRegion(@RequestParam(value = "page", defaultValue = "1") int page,
                                                            @RequestParam(value = "size", defaultValue = "2") int size) {
-        JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
         Page<ArticleDTO> response = articleService.pagingtionByRegion(page, size);
         return ResponseEntity.ok(response);
     }
@@ -122,11 +112,8 @@ public class ArticleController {
     }
 
     @PutMapping(value = "/private/pagingByCategory")
-    public ResponseEntity<Page<ArticleShortInfoDTO>> pagingByCategory( HttpServletRequest request,
-                                                                      @RequestParam(value = "page", defaultValue = "1") int page,
+    public ResponseEntity<Page<ArticleShortInfoDTO>> pagingByCategory(@RequestParam(value = "page", defaultValue = "1") int page,
                                                                       @RequestParam(value = "size", defaultValue = "2") int size) {
-        JwtUtil.checkForRequiredRole(request, ProfileRole.PUBLISHER, ProfileRole.ADMIN);
-        Integer ptrId = (Integer) request.getAttribute("role");
         Page<ArticleShortInfoDTO> response = articleService.pagingtionByCategory(page, size);
         return ResponseEntity.ok(response);
     }
@@ -140,6 +127,7 @@ public class ArticleController {
     public ResponseEntity<?> getIncreaseArticleShareCountByArticleId(@PathVariable("id") String articleId) {
         return ResponseEntity.ok(articleService.increaseArticleShareCountByArticleId(articleId));
     }
+
     @PostMapping("/filter")
     public ResponseEntity<Page<ArticleShortInfoDTO>> filter(@RequestBody ArticleFilterDTO dto,
                                                             @RequestParam(value = "page", defaultValue = "1") int page,

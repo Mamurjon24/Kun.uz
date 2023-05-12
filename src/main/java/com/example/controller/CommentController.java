@@ -10,6 +10,7 @@ import com.example.mapper.ArticleCommentMapper;
 import com.example.mapper.ArticleCommentPagenationMapper;
 import com.example.service.CommentService;
 import com.example.util.JwtUtil;
+import com.example.util.SpringSecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -26,30 +27,19 @@ public class CommentController {
     @PostMapping({"", "/"})
     public ResponseEntity<?> create(@RequestBody CommentCreateRequestDTO dto,
                                     @RequestHeader("Authorization") String authorization) {
-        String[] str = authorization.split(" ");
-        String jwt = str[1];
-        JwtDTO jwtDTO = JwtUtil.decode(jwt);
-        return ResponseEntity.ok(commentService.create(dto, jwtDTO.getId()));
+        return ResponseEntity.ok(commentService.create(dto));
     }
 
     @PostMapping("/update")
-    public ResponseEntity<?> update(@RequestBody CommentDTO dto,
-                                    @RequestHeader("Authorization") String authorization) {
-        String[] str = authorization.split(" ");
-        String jwt = str[1];
-        JwtDTO jwtDTO = JwtUtil.decode(jwt);
-        return ResponseEntity.ok(commentService.update(jwtDTO.getId(), dto));
+    public ResponseEntity<?> update(@RequestBody CommentDTO dto) {
+        return ResponseEntity.ok(commentService.update(dto));
     }
 
     @PostMapping("/delete/{id}")
-    public ResponseEntity<?> delete(@RequestHeader("Authorization") String authorization,
-                                    @PathVariable("id") Integer commentId) {
-        String[] str = authorization.split(" ");
-        String jwt = str[1];
-        JwtDTO jwtDTO = JwtUtil.decode(jwt);
+    public ResponseEntity<?> delete(@PathVariable("id") Integer commentId) {
         CommentEntity comment = commentService.get(commentId);
         boolean request = false;
-        if (comment.getProfileId().equals(jwtDTO.getId()) || JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN) != null) {
+        if (comment.getProfileId().equals(SpringSecurityUtil.getProfileId())) {
             commentService.delete(commentId);
             request = true;
         }
@@ -57,14 +47,12 @@ public class CommentController {
     }
 
     @PostMapping(value = "/getListByArticleId/{id}")
-    public ResponseEntity<?> getList(@RequestHeader("Authorization") String authorization,
-                                     @PathVariable("id") String articleId) {
-        JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
+    public ResponseEntity<?> getList(@PathVariable("id") String articleId) {
         List<ArticleCommentMapper> list = commentService.getAllByArticleId(articleId);
         return ResponseEntity.ok(list);
     }
 
-    @PutMapping(value = "/paging")
+    @PutMapping(value = "/public/paging")
     public ResponseEntity<Page<ArticleCommentPagenationMapper>> paging(@RequestParam(value = "page", defaultValue = "1") int page,
                                                                        @RequestParam(value = "size", defaultValue = "2") int size) {
         Page<ArticleCommentPagenationMapper> response = commentService.pagingtion(page, size);
@@ -72,10 +60,8 @@ public class CommentController {
     }
 
     @PostMapping(value = "/findRepliedCommentListByCommentId/{id}")
-    public ResponseEntity<?> findRepliedCommentListByCommentId(@RequestHeader("Authorization") String authorization,
-                                                               @PathVariable("id") Integer articleId) {
-        JwtUtil.getJwtDTO(authorization, ProfileRole.ADMIN);
-        List<ArticleCommentMapper> list = commentService.getRepliedCommentListByCommentId(articleId);
+    public ResponseEntity<?> findRepliedCommentListByCommentId(@PathVariable("id") Integer articleId) {
+            List<ArticleCommentMapper> list = commentService.getRepliedCommentListByCommentId(articleId);
         return ResponseEntity.ok(list);
     }
 
